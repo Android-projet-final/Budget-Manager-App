@@ -4,7 +4,16 @@
     tools:context="com.ly.badiane.budgetmanager_finalandroidproject.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:icon="@drawable/ic_settings_applications_black_24dp"
+        android:orderInCategory="200"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_alarm"
+        android:icon="@drawable/ic_alarm_add_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_alarm"
+        app:showAsAction="ifRoom" />
+
 </menu>
