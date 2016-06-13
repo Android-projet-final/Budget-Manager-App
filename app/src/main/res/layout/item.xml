@@ -2,25 +2,4 @@
 <com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imagepersonne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/nom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imagepersonne"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imagepersonne"/>
-    <TextView
-        android:id="@+id/prenom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nom"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/nom"/>
-
-
 </com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView>
