@@ -5,16 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.ly.badiane.budgetmanager_finalandroidproject.finances.Finances;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Finance;
 
 import java.util.List;
 
 /**
  * Created by badiane on 12/06/2016.
  */
-public class AdapteurFinances extends ArrayAdapter< Finances> {
+public class ListAdapteurFinance extends ArrayAdapter<Finance> {
 
-    public AdapteurFinances(Context context, List<Finances> personnes) {
+    public ListAdapteurFinance(Context context, List<Finance> personnes) {
         super(context, 0,personnes);
     }
 
