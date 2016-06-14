@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class ListAdapteurFinance extends ArrayAdapter<Finance> {
 
-    public ListAdapteurFinance(Context context, List<Finance> personnes) {
-        super(context, 0,personnes);
+    public ListAdapteurFinance(Context context, List<Finance> finances) {
+        super(context, 0,finances);
     }
 
     @Override

@@ -22,6 +22,9 @@
             android:name=".activites.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".vues.BudgetActivty" />
+        <activity
+            android:name=".vues.DepenseActivity"
+            android:label="@string/title_activity_depense"></activity>
     </application>
 
 </manifest>

@@ -28,7 +28,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/textcategories"
@@ -39,4 +40,90 @@
         android:layout_below="@+id/textmontant"
         android:text="Categories"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/textlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editmontant"
+        android:layout_alignLeft="@+id/editmontant"
+        android:layout_alignRight="@+id/editmontant"
+        android:layout_alignStart="@+id/editmontant"
+        android:layout_below="@+id/editmontant"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+    <TextView
+        android:id="@+id/textviewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editnote"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="notes:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/editnote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textlist"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/textlist"
+        android:layout_below="@+id/textlist" />
+
+    <TextView
+        android:id="@+id/textdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textviewNote"
+        android:layout_marginTop="45dp"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/editdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textdate"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="date"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/textviewF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:text="frequences"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/edittextFrequnces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editdate"
+        android:layout_alignLeft="@+id/editdate"
+        android:layout_alignRight="@+id/editdate"
+        android:layout_alignStart="@+id/editdate"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/buttonvalider"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextFrequnces"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:text="valider" />
+
 </RelativeLayout>

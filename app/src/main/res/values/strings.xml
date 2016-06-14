@@ -63,4 +63,8 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="despenses">Depenses</string>
+    <string name="budget">Budget</string>
+    <string name="title_activity_budget">BudgetActivity</string>
+    <string name="title_activity_depense">DepenseActivity</string>
 </resources>

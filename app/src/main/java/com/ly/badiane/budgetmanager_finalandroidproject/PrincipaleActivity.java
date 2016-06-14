@@ -4,6 +4,7 @@ package com.ly.badiane.budgetmanager_finalandroidproject;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,9 +14,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
+import com.ly.badiane.budgetmanager_finalandroidproject.vues.BudgetActivty;
+import com.ly.badiane.budgetmanager_finalandroidproject.vues.DepenseActivity;
 
 public class PrincipaleActivity extends Activity {
-
+    /*
+    Permet de naviguer entre les activity
+     */
+private Intent activitynew ;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -35,6 +44,7 @@ public class PrincipaleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principale);
+        activitynew = new Intent();
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -63,6 +73,21 @@ public class PrincipaleActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         switch (id){
+            case R.id.add:
+                Toast.makeText(this,"choisir en option ",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.budget:
+                activitynew = new Intent(this, BudgetActivty.class);
+                return true;
+            case R.id.depenses:
+                activitynew = new Intent(this, DepenseActivity.class);
+                return true;
+            case R.id.action_settings:
+                activitynew = new Intent(this, SettingsActivity.class);
+                return true;
+            case R.id.action_alarm:
+
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
