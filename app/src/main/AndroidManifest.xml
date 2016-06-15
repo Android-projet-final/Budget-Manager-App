@@ -24,7 +24,16 @@
         <activity android:name=".vues.BudgetActivty" />
         <activity
             android:name=".vues.DepenseActivity"
-            android:label="@string/title_activity_depense"></activity>
+            android:label="@string/title_activity_depense" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

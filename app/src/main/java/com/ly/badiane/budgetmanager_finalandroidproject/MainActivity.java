@@ -1,27 +1,26 @@
 package com.ly.badiane.budgetmanager_finalandroidproject;
 
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
+import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
+import com.ly.badiane.budgetmanager_finalandroidproject.vues.BudgetActivty;
+import com.ly.badiane.budgetmanager_finalandroidproject.vues.DepenseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -29,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     * {@link android.support.v13.app.FragmentStatePagerAdapter}.
      */
-
-    public static int nbPages = 3;
-
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+
+    private Intent activitynew;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -45,23 +43,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setCurrentItem(3);
-//        mViewPager.arrowScroll(3);
 
-        //ayout
-        Date d = new Date(System.currentTimeMillis());
-        Toast.makeText(this, d.toString(), Toast.LENGTH_LONG).show();
+
     }
 
 
@@ -80,12 +70,24 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            nbPages++;
-            mSectionsPagerAdapter.notifyDataSetChanged();
-            return true;
-        }
+        switch (id){
+            case R.id.add:
+                Toast.makeText(this,"choisir en option ",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.budget:
+                activitynew = new Intent(this, BudgetActivty.class);
+                return true;
+            case R.id.depenses:
+                activitynew = new Intent(this, DepenseActivity.class);
+                return true;
+            case R.id.action_settings:
+                activitynew = new Intent(this, SettingsActivity.class);
+                return true;
+            case R.id.action_alarm:
 
+                return true;
+
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return nbPages;
+            return 3;
         }
 
         @Override
@@ -156,9 +158,8 @@ public class MainActivity extends AppCompatActivity {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
-                default:
-                    return "SECTION " + position;
             }
+            return null;
         }
     }
 }

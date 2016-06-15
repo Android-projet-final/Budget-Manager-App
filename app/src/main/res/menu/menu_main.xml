@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.ly.badiane.budgetmanager_finalandroidproject.MainActivity">
+    tools:context="com.ly.badiane.budgetmanager_finalandroidproject">
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_applications_black_24dp"
@@ -35,6 +35,6 @@
                 android:title="@string/despenses"
                 app:showAsAction="never" />
         </menu>
-        </item>
+    </item>
 
 </menu>
