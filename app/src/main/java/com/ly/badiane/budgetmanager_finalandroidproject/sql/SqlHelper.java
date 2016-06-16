@@ -9,13 +9,22 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    private final static int VersionDataBase = 1;//Verion of database
+    private final static int VersionDataBase = 2;//Verion of database
     private final static String databaseName = "budgetmanager.db";//name of database
-    //requete de creation de la table finances
-    private String tableFinancesRequette = "CREATE TABLE finances ( mois NUMBER AUTOINCREMENT PRIMARY KEY," +
-            "an NUMBER , montant NUMBER, categories TEXT, note TEXT," +
-            "frequences TEXT)";
-    private String updateDroper = "DROP TABLE IF EXISTS finances";
+
+    //requete de creation de la table Transaction
+
+    private String requeteCreationTableTransaction = "CREATE TABLE Transaction (" +
+            "trans_id INTEGER AUTOINCREMENT PRIMARY KEY," +
+            "type INTEGER, " +
+            "montant REAL, " +
+            "categories TEXT, " +
+            "note TEXT," +
+            "date TEXT, " +
+            "frequences INTEGER" +
+            ")";
+
+    private String requeteDeMisAjourTableTransaction = "DROP TABLE IF EXISTS Transaction";
 
     public SqlHelper(Context context) {
         super(context, databaseName, null, VersionDataBase);
@@ -23,12 +32,12 @@ public class SqlHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(tableFinancesRequette);
+        db.execSQL(requeteCreationTableTransaction);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(updateDroper);
+        db.execSQL(requeteDeMisAjourTableTransaction);
         onCreate(db);
     }
 }

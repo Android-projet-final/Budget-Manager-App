@@ -8,7 +8,7 @@ import java.util.Date;
 /*
 Cette classe est une prototypage de n'importe quelle entrée ou sortie d'argents:
  */
-public abstract class Transaction {
+public class Transaction {
     //  private static int i = 0; //je pense on en aura pas besoin car on recupere dans la base de donnée
 
     //Definition des constantes
@@ -29,7 +29,7 @@ public abstract class Transaction {
     private int frequence; //annuel, mensuel, hebdomadaire, journalier, non frequenciel
     private int type; //Entrée ou sortie
 
-    public Transaction(int type, Double montant, String note, String categorie, int frequence, Date date) {
+    public Transaction(int type, Double montant, String categorie, String note, Date date, int frequence) {
 
         if (type != ENTREE && type != SORTIE) {
             //Exception de type TransactionTypeNotExist doit etre lancée
@@ -47,7 +47,13 @@ public abstract class Transaction {
         this.date = date;
     }
 
+    public Transaction(int id, int type, Double montant, String note, String categorie, int frequence, Date date) {
+        this(type, montant, categorie, note, date, frequence);
+        this.id = id;
+    }
 
+
+    //Getters and Setters
     public int getType() {
         return type;
     }
@@ -74,6 +80,7 @@ public abstract class Transaction {
 
     public String getNote() {
         return note;
+
     }
 
     public void setNote(String note) {
