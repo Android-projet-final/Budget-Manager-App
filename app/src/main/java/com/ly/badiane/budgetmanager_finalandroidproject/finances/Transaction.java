@@ -1,0 +1,106 @@
+package com.ly.badiane.budgetmanager_finalandroidproject.finances;
+
+import java.util.Date;
+
+/**
+ * Created by badiane on 12/06/2016.
+ */
+/*
+Cette classe est une prototypage de n'importe quelle entrée ou sortie d'argents:
+ */
+public abstract class Transaction {
+    //  private static int i = 0; //je pense on en aura pas besoin car on recupere dans la base de donnée
+
+    //Definition des constantes
+    private static final int ENTREE = 101;
+    private static final int SORTIE = 102;
+
+    private static final int ANNUEL = 201;
+    private static final int MENSUEL = 202;
+    private static final int HEBDOMADAIRE = 203;
+    private static final int JOURNALIER = 204;
+    private static final int UNE_FOIS = 205;
+
+    private int id;
+    private Double montant;
+    private String categorie;
+    private String note;
+    private Date date;
+    private int frequence; //annuel, mensuel, hebdomadaire, journalier, non frequenciel
+    private int type; //Entrée ou sortie
+
+    public Transaction(int type, Double montant, String note, String categorie, int frequence, Date date) {
+
+        if (type != ENTREE && type != SORTIE) {
+            //Exception de type TransactionTypeNotExist doit etre lancée
+        }
+
+        if (frequence != ANNUEL && frequence != MENSUEL && frequence != HEBDOMADAIRE && frequence != JOURNALIER && frequence != UNE_FOIS) {
+            //Exception de type TransactionFrequenceNotExist
+        }
+
+        this.type = type;
+        this.montant = montant;
+        this.note = note;
+        this.categorie = categorie;
+        this.frequence = frequence;
+        this.date = date;
+    }
+
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(Double montant) {
+        this.montant = montant;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public int getFrequences() {
+        return frequence;
+    }
+
+    public void setFrequences(String frequences) {
+        this.frequence = frequence;
+    }
+}

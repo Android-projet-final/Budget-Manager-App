@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
-import com.ly.badiane.budgetmanager_finalandroidproject.finances.Finance;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
 /**
  * Created by badiane on 12/06/2016.
@@ -34,7 +34,7 @@ public class FinancesView extends RelativeLayout {
 
     }
 
-    public void display(final Finance finance) {
+    public void display(final Transaction transaction) {
 
     }
 }

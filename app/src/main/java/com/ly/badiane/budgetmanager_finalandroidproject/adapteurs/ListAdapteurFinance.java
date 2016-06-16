@@ -5,17 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.ly.badiane.budgetmanager_finalandroidproject.finances.Finance;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
 import java.util.List;
 
 /**
  * Created by badiane on 12/06/2016.
  */
-public class ListAdapteurFinance extends ArrayAdapter<Finance> {
+public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
 
-    public ListAdapteurFinance(Context context, List<Finance> finances) {
-        super(context, 0,finances);
+    public ListAdapteurFinance(Context context, List<Transaction> transactions) {
+        super(context, 0, transactions);
     }
 
     @Override
