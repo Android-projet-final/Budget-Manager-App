@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    private final static int  VersionDataBase =  1;//Verion of database
+    private final static int VersionDataBase = 1;//Verion of database
     private final static String databaseName = "budgetmanager.db";//name of database
     //requete de creation de la table finances
     private String tableFinancesRequette = "CREATE TABLE finances ( mois NUMBER AUTOINCREMENT PRIMARY KEY," +
@@ -17,9 +17,10 @@ public class SqlHelper extends SQLiteOpenHelper {
             "frequences TEXT)";
     private String updateDroper = "DROP TABLE IF EXISTS finances";
 
-    public SqlHelper (Context context){
-        super(context,databaseName,null,VersionDataBase);
+    public SqlHelper(Context context) {
+        super(context, databaseName, null, VersionDataBase);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(tableFinancesRequette);
@@ -27,7 +28,7 @@ public class SqlHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    db.execSQL(updateDroper);
+        db.execSQL(updateDroper);
         onCreate(db);
     }
 }

@@ -15,12 +15,12 @@
         android:orderInCategory="200"
         android:title="@string/action_alarm"
         app:showAsAction="ifRoom" />
+    <!--android:icon="@drawable/ic_add_box_black_24dp"-->
     <item
         android:id="@+id/add"
-        android:icon="@drawable/ic_add_box_black_24dp"
         android:orderInCategory="100"
         android:title="@string/action_alarm"
-        app:showAsAction="ifRoom" >
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/budget"

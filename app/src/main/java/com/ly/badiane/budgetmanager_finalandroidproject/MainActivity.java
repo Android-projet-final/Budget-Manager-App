@@ -1,13 +1,14 @@
 package com.ly.badiane.budgetmanager_finalandroidproject;
 
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivi
 import com.ly.badiane.budgetmanager_finalandroidproject.vues.BudgetActivty;
 import com.ly.badiane.budgetmanager_finalandroidproject.vues.DepenseActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,10 +40,15 @@ public class MainActivity extends Activity {
      */
     private ViewPager mViewPager;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
