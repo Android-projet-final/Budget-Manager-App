@@ -1,6 +1,6 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.finances;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by badiane on 12/06/2016.
@@ -25,11 +25,11 @@ public class Transaction {
     private Double montant;
     private String categorie;
     private String note;
-    private Date date;
+    private GregorianCalendar date;
     private int frequence; //annuel, mensuel, hebdomadaire, journalier, non frequenciel
     private int type; //Entrée ou sortie
 
-    public Transaction(int type, Double montant, String categorie, String note, Date date, int frequence) {
+    public Transaction(int type, Double montant, String categorie, String note, GregorianCalendar date, int frequence) {
 
         if (type != ENTREE && type != SORTIE) {
             //Exception de type TransactionTypeNotExist doit etre lancée
@@ -47,7 +47,7 @@ public class Transaction {
         this.date = date;
     }
 
-    public Transaction(int id, int type, Double montant, String note, String categorie, int frequence, Date date) {
+    public Transaction(int id, int type, Double montant, String note, String categorie, int frequence, GregorianCalendar date) {
         this(type, montant, categorie, note, date, frequence);
         this.id = id;
     }
@@ -87,11 +87,11 @@ public class Transaction {
         this.note = note;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(GregorianCalendar date) {
         this.date = date;
     }
 

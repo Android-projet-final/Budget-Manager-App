@@ -21,7 +21,7 @@ public class TransactionDAO {
         db = new SqlHelper(context).getWritableDatabase();
     }
 
-    public List<Transaction> getUnsortedList() {
+    public List<Transaction> recuperTouteLaListe() {
         List<Transaction> list = null;
 
         Cursor result = db.rawQuery("select trans_id, type, montant, categorie, note, date, frequence from etudiants", null);
@@ -48,7 +48,6 @@ public class TransactionDAO {
             String dateString = result.getString(5);
             int frequence = result.getInt(6);
 
-
             //TODO list.add(new Transaction(id, type, montant, categorie, note, date, frequence) );
             //Utiliser calandar serait mieux dans ce cas ci au lieu de date
             result.moveToNext();
@@ -56,13 +55,20 @@ public class TransactionDAO {
         return list;
     }
 
-    public long inserFinances() {
+    public long ajouterTransaction() {
         ContentValues values = new ContentValues();
+        //TODO
         return db.insert("finances", null, values);
     }
 
-    public boolean delecteFinances(int id) {
-
+    public boolean supprimerTransaction(int id) {
+        //TODO
         return true;
     }
+
+    public boolean modifierTransaction() {
+        //TODO
+        return true;
+    }
+
 }
