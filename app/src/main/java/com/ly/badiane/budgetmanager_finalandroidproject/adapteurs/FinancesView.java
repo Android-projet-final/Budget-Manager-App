@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
-import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
 /**

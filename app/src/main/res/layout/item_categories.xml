@@ -12,9 +12,9 @@
         android:id="@+id/txtcat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageCat"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageCat"
-        android:layout_alignTop="@+id/imageCat"/>
+        android:layout_toRightOf="@+id/imageCat"/>
 
 
 </com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.CategoriesView>
