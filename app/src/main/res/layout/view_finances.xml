@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageCategories"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/txtcategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/imageCategories"
+        android:layout_alignTop="@+id/imageCategories"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/txtcategories"
+        android:layout_alignTop="@+id/txtcategories"/>
+
+    <TextView
+        android:id="@+id/montant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_toRightOf="@+id/date"
+        android:layout_alignTop="@+id/date"/>
+</com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView>

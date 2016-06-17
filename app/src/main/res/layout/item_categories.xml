@@ -3,4 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:id="@+id/imageCat"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/txtcat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/imageCat"
+        android:layout_alignTop="@+id/imageCat"/>
+
+
 </com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.CategoriesView>

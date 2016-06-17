@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
@@ -13,6 +15,8 @@ import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
  * Created by badiane on 13/06/2016.
  */
 public class CategoriesView extends RelativeLayout {
+    private ImageView img;
+    private TextView txt;
     public CategoriesView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -27,9 +31,11 @@ public class CategoriesView extends RelativeLayout {
         return itemView;
     }
     private void findViews(){
-
+    img = (ImageView)findViewById(R.id.imageCat);
+    txt = (TextView) findViewById(R.id.txtcat);
     }
     public void display(final Categories categories) {
-
+    img.setImageResource(categories.getDrawableResId());
+     txt.setText(getResources().getString(categories.getStringResId()));
     }
 }

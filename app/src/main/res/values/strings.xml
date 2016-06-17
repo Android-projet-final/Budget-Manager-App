@@ -67,4 +67,24 @@
     <string name="budget">Budget</string>
     <string name="title_activity_budget">BudgetActivity</string>
     <string name="title_activity_depense">DepenseActivity</string>
+    <string name="add">
+        add
+    </string>
+
+        <string name="voyage">
+        travel
+    </string>    <string name="shoping">
+        shoping
+    </string>    <string name="divers">
+        divers
+    </string>    <string name="eduction">
+        eduction
+    </string>    <string name="food">
+        food
+    </string>    <string name="carmotor">
+        car/motor
+    </string>
+
+
+
 </resources>

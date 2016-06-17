@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
 /**
@@ -16,7 +17,10 @@ import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
  */
 public class FinancesView extends RelativeLayout {
     private TextView montant;
-    private ImageView categorie;
+    private ImageView categorieImage;
+    private TextView date;
+    private TextView categoriesTxt;
+
     //private
     public FinancesView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -31,10 +35,17 @@ public class FinancesView extends RelativeLayout {
         return itemView;
     }
     private void findViews(){
-
+    montant = (TextView)findViewById(R.id.montant);
+        date = (TextView)findViewById(R.id.date);
+        categoriesTxt = (TextView)findViewById(R.id.txtcategories);
+        categorieImage = (ImageView)findViewById(R.id.imageCategories);
     }
 
     public void display(final Transaction transaction) {
+        categorieImage.setImageResource(transaction.getCategorie().getDrawableResId());
+        categoriesTxt.setText(getResources().getString(transaction.getCategorie().getStringResId()));
+        date.setText(transaction.getDate().toString());
+        montant.setText(transaction.getMontant().toString());
 
     }
 }
