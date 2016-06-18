@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by layely on 6/18/16.
  */
-public final class UtilitaireDOA {
+public final class UtilitaireDAO {
     private SQLiteDatabase db;
 
-    public UtilitaireDOA(Context context) {
+    public UtilitaireDAO(Context context) {
         db = new SqlHelper(context).getWritableDatabase();
     }
 
