@@ -47,7 +47,7 @@ public class DepenseActivity extends Activity {
         mois = calendar.get(Calendar.MONTH);
         jour = calendar.get(Calendar.DAY_OF_MONTH);
 
-        date.setText(jour+"/"+mois+1+"/"+annee);
+        date.setText(jour+"/"+(mois+1)+"/"+annee);
     }
     private void setAction(){
         validation.setOnClickListener(new View.OnClickListener() {
@@ -56,20 +56,22 @@ public class DepenseActivity extends Activity {
 
             }
         });
-        date.setOnClickListener(new View.OnClickListener() {
+        date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getApplicationContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                date.setText(dayOfMonth+"/"+monthOfYear+1+"/"+year);
-                            }
-                        },annee,mois,jour
-                );
-                datePickerDialog.show();
-
+            public void onFocusChange(View v, boolean hasFocus) {
+             if(hasFocus){
+                 DatePickerDialog datePickerDialog = new DatePickerDialog(getApplicationContext(),
+                         new DatePickerDialog.OnDateSetListener() {
+                             @Override
+                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                 date.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                             }
+                         },annee,mois,jour
+                 );
+                 datePickerDialog.show();
+             }
             }
         });
+
     }
 }
