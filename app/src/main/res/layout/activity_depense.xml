@@ -74,7 +74,7 @@
         android:id="@+id/edittextFrequnces"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/buttonvalider"
