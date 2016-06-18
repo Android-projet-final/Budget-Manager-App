@@ -41,8 +41,8 @@ public class FinancesView extends RelativeLayout {
     }
 
     public void display(final Transaction transaction) {
-        categorieImage.setImageResource(transaction.getCategorie().getDrawableResId());
-        categoriesTxt.setText(getResources().getString(transaction.getCategorie().getStringResId()));
+        categorieImage.setImageResource(transaction.getCategories().getDrawableResId());
+        categoriesTxt.setText(getResources().getString(transaction.getCategories().getStringResId()));
         date.setText(transaction.getDate().toString());
         montant.setText(transaction.getMontant().toString());
 

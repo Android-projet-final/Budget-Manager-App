@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by badiane on 13/06/2016.
  */
-public class Categories  {
+public class Categories {
     static  ArrayList<Categories> ALL;
 
     static {
