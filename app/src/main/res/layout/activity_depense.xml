@@ -54,7 +54,6 @@
         android:id="@+id/textdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
         android:text="Date"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -62,8 +61,6 @@
         android:id="@+id/editdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
         android:singleLine="true" />
 
     <TextView
@@ -75,7 +72,7 @@
 
     <EditText
         android:id="@+id/edittextFrequnces"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true" />
 
@@ -84,7 +81,6 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
         android:text="valider" />
 
 </LinearLayout>

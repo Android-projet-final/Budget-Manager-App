@@ -3,6 +3,7 @@ package com.ly.badiane.budgetmanager_finalandroidproject.vues;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -17,9 +18,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
+import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+private Intent activitySwitcher; //pour changer d'activiter
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -69,8 +71,20 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_settings:
+                activitySwitcher = new Intent(this, SettingsActivity.class);
+                startActivity(activitySwitcher);
+                return true;
+            case R.id.action_alarm:
+                return true;
+            case R.id.addbudget:
+                return true;
+            case R.id.adddepenses:
+                activitySwitcher = new Intent(this,DepenseActivity.class);
+                startActivity(activitySwitcher);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

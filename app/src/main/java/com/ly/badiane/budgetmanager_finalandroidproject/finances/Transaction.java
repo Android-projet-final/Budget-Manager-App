@@ -109,7 +109,7 @@ public class Transaction {
         return frequence;
     }
 
-    public void setFrequences(String frequences) {
+    public void setFrequences(int frequence) {
         this.frequence = frequence;
     }
 }
