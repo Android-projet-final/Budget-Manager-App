@@ -21,9 +21,9 @@ public final class UtilitaireDAO {
     }
 
     public int nombreLancementApp() {
-        String requete = "SELECT " + SqlHelper.COLUMN_UTILITAIRE_ID + "," + SqlHelper.COLUMN_UTILITAIRE_VALUE +
-                "FROM" + SqlHelper.TABLE_UTILITAIRE +
-                "WHERE" + SqlHelper.COLUMN_UTILITAIRE_ID + "=" + SqlHelper.NB_LANCEMENT_APP;
+        String requete = "SELECT " + SqlHelper.COLUMN_UTILITAIRE_ID + ", " + SqlHelper.COLUMN_UTILITAIRE_VALUE +
+                " FROM " + SqlHelper.TABLE_UTILITAIRE +
+                " WHERE " + SqlHelper.COLUMN_UTILITAIRE_ID + "='" + SqlHelper.NB_LANCEMENT_APP + "'";
 
         Cursor cursor = db.rawQuery(requete, null);
         cursor.moveToFirst();
@@ -36,8 +36,8 @@ public final class UtilitaireDAO {
 
     public boolean mettreAjourUneColone(String key, String newValue) {
         ContentValues cv = new ContentValues();
-        cv.put(key, newValue);
-        int resultatDeLaRequete = db.update(SqlHelper.TABLE_UTILITAIRE, cv, SqlHelper.COLUMN_UTILITAIRE_ID + "=" + key, null);
+        cv.put(SqlHelper.COLUMN_UTILITAIRE_VALUE, newValue);
+        int resultatDeLaRequete = db.update(SqlHelper.TABLE_UTILITAIRE, cv, SqlHelper.COLUMN_UTILITAIRE_ID + "='" + key + "'", null);
         if (resultatDeLaRequete > 0)
             return true;
         return false;

@@ -11,6 +11,8 @@ import java.util.GregorianCalendar;
  */
 public class Utilitaire {
 
+    public static String MY_LOG = "MY_LOG";
+
     /*
     Converti une chaine de format "aa/mm/aaaa" en un objet GregorianCalandar qu'elle retourne
      */

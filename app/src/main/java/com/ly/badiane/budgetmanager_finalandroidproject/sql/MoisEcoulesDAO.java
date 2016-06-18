@@ -46,7 +46,7 @@ public class MoisEcoulesDAO {
     public ArrayList<Mois> liste() {
         ArrayList<Mois> liste = new ArrayList<>();
         String requete = "SELECT " + SqlHelper.COLUMN_MOIS_ECOULES_ID + "," + SqlHelper.COLUMN_MOIS_ECOULES_MOIS +
-                "FROM" + SqlHelper.TABLE_MOIS_ECOULES;
+                " FROM " + SqlHelper.TABLE_MOIS_ECOULES;
 
         Cursor cursor = db.rawQuery(requete, null);
         cursor.moveToFirst();
@@ -54,6 +54,7 @@ public class MoisEcoulesDAO {
 //            int m = cursor.getInt(cursor.getColumnIndex(SqlHelper.COLUMN_MOIS_ECOULES_ID));
             String mm_aaaa = cursor.getString(cursor.getColumnIndex(SqlHelper.COLUMN_MOIS_ECOULES_MOIS));
             liste.add(new Mois(mm_aaaa));
+            cursor.moveToNext();
         }
         cursor.close();
         return liste;

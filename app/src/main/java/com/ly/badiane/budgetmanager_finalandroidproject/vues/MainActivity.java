@@ -10,6 +10,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.MoisEcoulesDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
@@ -49,11 +51,6 @@ private Intent activitySwitcher; //pour changer d'activiter
         toolbar.setBackgroundColor(Color.WHITE);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         //set up DAOs for databases querries
         utilitaireDAO = new UtilitaireDAO(this);
@@ -63,9 +60,18 @@ private Intent activitySwitcher; //pour changer d'activiter
         utilitaireDAO.mettreAjourNbLancementApp();
         if (utilitaireDAO.nombreLancementApp() == 1) {
             premierLancementinsertion();
+            Log.i(Utilitaire.MY_LOG, "nombreLancementapp()");
         }
 
         initMoisEcoulesList();
+
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
 
     }
 
@@ -142,6 +148,8 @@ private Intent activitySwitcher; //pour changer d'activiter
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            TextView textView1 = (TextView) rootView.findViewById(R.id.title);
+//            textView1.setText();
             return rootView;
         }
     }
@@ -166,7 +174,7 @@ private Intent activitySwitcher; //pour changer d'activiter
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return moisEcoulesList.size();
+            return moisEcoulesList.size() + 1;
         }
 
         @Override
