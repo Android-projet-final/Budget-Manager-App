@@ -24,7 +24,7 @@ public class MoisEcoulesDAO {
         return true;
     }
 
-    public boolean insertionLorsDuLancement1() {
+    public boolean insertionLorsDuPremierLancement() {
         //TODO
         return true;
     }

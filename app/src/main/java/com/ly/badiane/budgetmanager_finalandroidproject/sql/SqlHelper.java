@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_TRANSACTION = "Transaction";
+    public static final String TABLE_TRANSACTION = "Transac";
     public static final String TABLE_MOIS_ECOULES = "MoisEcoules";
     public static final String TABLE_UTILITAIRE = "Utilitaire";
 
@@ -36,7 +36,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 //        requete de creation de la table Transaction
         String requeteCreationTableTransaction = "CREATE TABLE " + TABLE_TRANSACTION + " (" +
-                COLUMN_TRANSACTION_ID + " INTEGER AUTOINCREMENT PRIMARY KEY," +
+                COLUMN_TRANSACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_TRANSACTION_TYPE + " INTEGER, " +
                 COLUMN_TRANSACTION_MONTANT + " REAL, " +
                 COLUMN_TRANSACTION_CATEGORIE + " TEXT, " +
@@ -47,7 +47,7 @@ public class SqlHelper extends SQLiteOpenHelper {
 
         //requete de creation de la table des mois qui se sont écoulés
         String requeteCreationTableMoisEcoules = "CREATE TABLE " + TABLE_MOIS_ECOULES + " (" +
-                COLUMN_MOIS_ECOULES_ID + " INTEGER AUTOINCREMENT PRIMARY KEY, " +
+                COLUMN_MOIS_ECOULES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_MOIS_ECOULES_MOIS + " TEXT)";
 
 //        requete de creation de la table Utilitaire contenant quelques données utiles

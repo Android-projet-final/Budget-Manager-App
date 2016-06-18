@@ -19,23 +19,20 @@ import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.MoisEcoulesDAO;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
 
 public class MainActivity extends AppCompatActivity {
 private Intent activitySwitcher; //pour changer d'activiter
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v13.app.FragmentStatePagerAdapter}.
-     */
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
+
+    private MoisEcoulesDAO moisEcoulesDAO;
+    private TransactionDAO transactionDAO;
+    private UtilitaireDAO utilitaireDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +49,10 @@ private Intent activitySwitcher; //pour changer d'activiter
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        //set up DAOs for databases querries
+        utilitaireDAO = new UtilitaireDAO(this);
+        moisEcoulesDAO = new MoisEcoulesDAO(this);
+        transactionDAO = new TransactionDAO(this);
 
     }
 
