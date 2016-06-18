@@ -12,6 +12,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final String TABLE_TRANSACTION = "Transaction";
     public static final String TABLE_MOIS_ECOULES = "MoisEcoules";
     public static final String TABLE_UTILITAIRE = "Utilitaire";
+
     public static final String COLUMN_TRANSACTION_ID = "trans_id";
     public static final String COLUMN_TRANSACTION_TYPE = "type";
     public static final String COLUMN_TRANSACTION_MONTANT = "montant";
@@ -21,8 +22,11 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRANSACTION_FREQUENCE = "frequence";
     public static final String COLUMN_MOIS_ECOULES_ID = "mois_id";
     public static final String COLUMN_MOIS_ECOULES_MOIS = "mois"; //format MM/YYYY
-    private final static int VersionDataBase = 2;//Verion of database
+    public static final String COLUMN_UTILITAIRE_ID = "util_id";
+    public static final String COLUMN_UTILITAIRE_VALUE = "valeur";
+    public static final String NB_LANCEMENT_APP = "NB_LANCEMENT_APP";
     private final static String databaseName = "budgetmanager.db";//name of database
+    private final static int VersionDataBase = 2;//Verion of database
 
     public SqlHelper(Context context) {
         super(context, databaseName, null, VersionDataBase);
@@ -47,7 +51,7 @@ public class SqlHelper extends SQLiteOpenHelper {
                 COLUMN_MOIS_ECOULES_MOIS + " TEXT)";
 
 //        requete de creation de la table Utilitaire contenant quelques données utiles
-        String requeteCreationTableUtilitaire = "CREATE TABLE " + TABLE_UTILITAIRE + " (util_id Text PRIMARY KEY, valeur Text)";
+        String requeteCreationTableUtilitaire = "CREATE TABLE " + TABLE_UTILITAIRE + " (" + COLUMN_UTILITAIRE_ID + " Text PRIMARY KEY, " + COLUMN_UTILITAIRE_VALUE + " Text)";
 
 
         db.execSQL(requeteCreationTableTransaction);
@@ -55,7 +59,7 @@ public class SqlHelper extends SQLiteOpenHelper {
         db.execSQL(requeteCreationTableUtilitaire);
 
 //      Ajout de la ligne qui contient le nombre de fois que l'application a été lancé
-        String requeteAjoutLigne_nb_lancement_app = "INSERT INTO " + TABLE_UTILITAIRE + " (util_id, valeur) values ('nb_lancement_app', '0')";
+        String requeteAjoutLigne_nb_lancement_app = "INSERT INTO " + TABLE_UTILITAIRE + " (" + COLUMN_UTILITAIRE_ID + ", " + COLUMN_UTILITAIRE_VALUE + ") values ('" + NB_LANCEMENT_APP + "', '0')";
         db.execSQL(requeteAjoutLigne_nb_lancement_app);
     }
 

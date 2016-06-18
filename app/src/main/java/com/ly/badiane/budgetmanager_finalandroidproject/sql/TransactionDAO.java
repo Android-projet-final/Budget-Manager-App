@@ -97,8 +97,12 @@ public class TransactionDAO {
         ContentValues contentValues = getContentValuesWithoutID(transaction);
         if (contentValues == null)
             return false;
-        db.update(SqlHelper.TABLE_TRANSACTION, contentValues, SqlHelper.COLUMN_TRANSACTION_ID + "=" + transactionID, null);
-        return true;
+
+        int resultDeLaRequete = db.update(SqlHelper.TABLE_TRANSACTION, contentValues, SqlHelper.COLUMN_TRANSACTION_ID + "=" + transactionID, null);
+        if (resultDeLaRequete == 0)
+            return false;
+        else
+            return true;
     }
 
     private ContentValues getContentValuesWithoutID(Transaction transaction) {
