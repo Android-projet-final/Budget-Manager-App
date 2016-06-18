@@ -30,6 +30,7 @@ public final class UtilitaireDAO {
         if (!cursor.isAfterLast()) {
             return cursor.getInt(cursor.getColumnIndex(SqlHelper.COLUMN_UTILITAIRE_VALUE));
         }
+        cursor.close();
         return -1;
     }
 

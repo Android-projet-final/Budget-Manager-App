@@ -19,9 +19,12 @@ import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.MoisEcoulesDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 private Intent activitySwitcher; //pour changer d'activiter
@@ -33,6 +36,9 @@ private Intent activitySwitcher; //pour changer d'activiter
     private MoisEcoulesDAO moisEcoulesDAO;
     private TransactionDAO transactionDAO;
     private UtilitaireDAO utilitaireDAO;
+
+    //    private int nbSlides = 0; //Contient le nombre de pages ou de slides ou encore de tabulation dans le ViewPager
+    private ArrayList<Mois> moisEcoulesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +60,22 @@ private Intent activitySwitcher; //pour changer d'activiter
         moisEcoulesDAO = new MoisEcoulesDAO(this);
         transactionDAO = new TransactionDAO(this);
 
+        utilitaireDAO.mettreAjourNbLancementApp();
+        if (utilitaireDAO.nombreLancementApp() == 1) {
+            premierLancementinsertion();
+        }
+
+        initMoisEcoulesList();
+
     }
 
+    private void premierLancementinsertion() {
+        moisEcoulesDAO.insertionLorsDuPremierLancement();
+    }
+
+    private void initMoisEcoulesList() {
+        moisEcoulesList = moisEcoulesDAO.liste();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,20 +166,14 @@ private Intent activitySwitcher; //pour changer d'activiter
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return moisEcoulesList.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+            if (position == moisEcoulesList.size())
+                return "Mois Future"; //TODO internasionalisation
+            return moisEcoulesList.get(position).toString();
         }
     }
 }

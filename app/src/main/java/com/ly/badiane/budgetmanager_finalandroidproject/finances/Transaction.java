@@ -17,8 +17,8 @@ public class Transaction {
     private static final int ENTREE = 101;
     private static final int SORTIE = 102;
 
-    private static final int ANNUEL = 201;
-    private static final int MENSUEL = 202;
+    private static final int MENSUEL = 201;
+    private static final int DEUX_SEMAINES = 202;
     private static final int HEBDOMADAIRE = 203;
     private static final int JOURNALIER = 204;
     private static final int UNE_FOIS = 205;
@@ -37,7 +37,7 @@ public class Transaction {
             //Exception de type TransactionTypeNotExist doit etre lancée
         }
 
-        if (frequence != ANNUEL && frequence != MENSUEL && frequence != HEBDOMADAIRE && frequence != JOURNALIER && frequence != UNE_FOIS) {
+        if (frequence != DEUX_SEMAINES && frequence != MENSUEL && frequence != HEBDOMADAIRE && frequence != JOURNALIER && frequence != UNE_FOIS) {
             //Exception de type TransactionFrequenceNotExist
         }
 
