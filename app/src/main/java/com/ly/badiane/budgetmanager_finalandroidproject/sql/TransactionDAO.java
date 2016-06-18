@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
@@ -54,7 +54,7 @@ public class TransactionDAO {
             int id = result.getInt(0);
             int type = result.getInt(1);
             double montant = result.getDouble(2);
-            Categories categories = Categories.getInstance(result.getInt(3));
+            Categorie categorie = Categorie.getInstance(result.getInt(3));
             String note = result.getString(4);
             String dateString = result.getString(5);
             int frequence = result.getInt(6);
@@ -62,7 +62,7 @@ public class TransactionDAO {
             GregorianCalendar date = null;
             try {
                 date = Utilitaire.stringToCalandar(dateString);
-                Transaction transaction = new Transaction(id, type, montant, categories, note, date, frequence);
+                Transaction transaction = new Transaction(id, type, montant, categorie, note, date, frequence);
                 list.add(transaction);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -112,7 +112,7 @@ public class TransactionDAO {
         ContentValues values = new ContentValues();
         values.put(SqlHelper.COLUMN_TRANSACTION_TYPE, transaction.getType());
         values.put(SqlHelper.COLUMN_TRANSACTION_MONTANT, transaction.getMontant());
-        values.put(SqlHelper.COLUMN_TRANSACTION_CATEGORIE, transaction.getCategories().getId());
+        values.put(SqlHelper.COLUMN_TRANSACTION_CATEGORIE, transaction.getCategorie().getId());
         values.put(SqlHelper.COLUMN_TRANSACTION_NOTE, transaction.getNote());
         values.put(SqlHelper.COLUMN_TRANSACTION_DATE, Utilitaire.calandarToString(transaction.getDate()));
         values.put(SqlHelper.COLUMN_TRANSACTION_FREQUENCE, transaction.getFrequences());

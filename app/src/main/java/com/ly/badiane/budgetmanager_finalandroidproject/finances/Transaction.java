@@ -1,6 +1,6 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.finances;
 
-import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 
 import java.util.GregorianCalendar;
 
@@ -25,13 +25,13 @@ public class Transaction {
 
     private int id;
     private Double montant;
-    private Categories categories;
+    private Categorie categorie;
     private String note;
     private GregorianCalendar date;
     private int frequence; //annuel, mensuel, hebdomadaire, journalier, non frequenciel
     private int type; //Entrée ou sortie
 
-    public Transaction(int type, Double montant, Categories categories, String note, GregorianCalendar date, int frequence) {
+    public Transaction(int type, Double montant, Categorie categorie, String note, GregorianCalendar date, int frequence) {
 
         if (type != ENTREE && type != SORTIE) {
             //Exception de type TransactionTypeNotExist doit etre lancée
@@ -44,13 +44,13 @@ public class Transaction {
         this.type = type;
         this.montant = montant;
         this.note = note;
-        this.categories = categories;
+        this.categorie = categorie;
         this.frequence = frequence;
         this.date = date;
     }
 
-    public Transaction(int id, int type, Double montant, Categories categories, String note, GregorianCalendar date, int frequence) {
-        this(type, montant, categories, note, date, frequence);
+    public Transaction(int id, int type, Double montant, Categorie categorie, String note, GregorianCalendar date, int frequence) {
+        this(type, montant, categorie, note, date, frequence);
         this.id = id;
     }
 
@@ -97,12 +97,12 @@ public class Transaction {
         this.date = date;
     }
 
-    public Categories getCategories() {
-        return categories;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    public void setCategories(Categories categories) {
-        this.categories = categories;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     public int getFrequences() {

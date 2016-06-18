@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
-import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 
 /**
  * Created by badiane on 13/06/2016.
@@ -34,8 +34,9 @@ public class CategoriesView extends RelativeLayout {
     img = (ImageView)findViewById(R.id.imageCat);
     txt = (TextView) findViewById(R.id.txtcat);
     }
-    public void display(final Categories categories) {
-    img.setImageResource(categories.getDrawableResId());
-     txt.setText(getResources().getString(categories.getStringResId()));
+
+    public void display(final Categorie categorie) {
+        img.setImageResource(categorie.getDrawableResId());
+        txt.setText(getResources().getString(categorie.getStringResId()));
     }
 }

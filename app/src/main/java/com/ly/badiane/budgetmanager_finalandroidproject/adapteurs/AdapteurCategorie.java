@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categories;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 
 import java.util.List;
 
 /**
  * Created by badiane on 13/06/2016.
  */
-public class AdapteurCategorie extends ArrayAdapter <Categories> {
-    public AdapteurCategorie(Context context, List<Categories> categories) {
+public class AdapteurCategorie extends ArrayAdapter<Categorie> {
+    public AdapteurCategorie(Context context, List<Categorie> categories) {
         super(context,0, categories);
 
     }
