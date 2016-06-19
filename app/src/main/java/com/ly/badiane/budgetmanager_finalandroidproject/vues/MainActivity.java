@@ -180,7 +180,9 @@ private Intent activitySwitcher; //pour changer d'activiter
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == moisEcoulesList.size())
-                return "Mois Future"; //TODO internasionalisation
+                return "Mois Futures"; //TODO internasionalisation
+            if (position == moisEcoulesList.size() - 1)
+                return "Ce mois-ci"; //TODO internasionalisation
             return moisEcoulesList.get(position).toString();
         }
     }

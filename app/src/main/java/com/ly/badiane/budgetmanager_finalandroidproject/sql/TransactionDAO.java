@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class TransactionDAO {
         db = new SqlHelper(context).getWritableDatabase();
     }
 
-    public List<Transaction> recuperTouteLaListe() {
+    public List<Transaction> listeNonTriee() {
         List<Transaction> list = null;
 
         Cursor result = db.rawQuery("select " +
@@ -37,13 +39,13 @@ public class TransactionDAO {
                 SqlHelper.COLUMN_TRANSACTION_FREQUENCE + " from " +
                 SqlHelper.TABLE_TRANSACTION + "", null);
 
-        list = recuperCommeListe(result);
+        list = commeList(result);
         result.close();
         return list;
     }
 
 
-    private List<Transaction> recuperCommeListe(Cursor result) {
+    private List<Transaction> commeList(Cursor result) {
         List<Transaction> list = new ArrayList<>();
         if (result == null)
             return list;
@@ -105,6 +107,55 @@ public class TransactionDAO {
             return true;
     }
 
+    public List<Transaction> listDuMois(Mois mois) {
+        List<Transaction> list = new ArrayList<Transaction>();
+        for (Transaction transac : listeNonTriee()) {
+            if (mois.includes(transac.getDate()))
+                list.add(transac);
+        }
+        return list;
+    }
+
+    public List<Transaction> listApresMois(Mois mois) {
+        List<Transaction> list = new ArrayList<Transaction>();
+        for (Transaction transac : listeNonTriee()) {
+            if (mois.isBefore(transac.getDate()))
+                list.add(transac);
+        }
+        return list;
+    }
+
+    public List<Transaction> listAvantMois(Mois mois) {
+        List<Transaction> list = new ArrayList<Transaction>();
+        for (Transaction transac : listeNonTriee()) {
+            if (mois.isAfter(transac.getDate()))
+                list.add(transac);
+        }
+        return list;
+    }
+
+
+    /*
+     * Retourne la liste des transactions effectuées entre un mois A et B (inclus les mois effectués pendant A et B)
+    * */
+    public List<Transaction> listEntre(Mois moisA, Mois moisB) {
+        Mois moisInf, moisSup;
+        if (moisA.isBefore(moisB)) {
+            moisInf = moisA;
+            moisSup = moisB;
+        } else {
+            moisInf = moisB;
+            moisSup = moisA;
+        }
+        List<Transaction> list = new ArrayList<Transaction>();
+        for (Transaction transac : listeNonTriee()) {
+            Calendar calendar = transac.getDate();
+            if ((moisInf.isBefore(calendar) || moisInf.includes(calendar)) && (moisSup.isAfter(calendar) || moisSup.includes(calendar)))
+                list.add(transac);
+        }
+        return list;
+    }
+
     private ContentValues getContentValuesWithoutID(Transaction transaction) {
         if (transaction == null) {
             return null;
@@ -118,4 +169,6 @@ public class TransactionDAO {
         values.put(SqlHelper.COLUMN_TRANSACTION_FREQUENCE, transaction.getFrequences());
         return values;
     }
+
+
 }

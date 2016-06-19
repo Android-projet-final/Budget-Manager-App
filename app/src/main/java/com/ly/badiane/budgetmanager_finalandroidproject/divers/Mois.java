@@ -1,10 +1,12 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.divers;
 
+import java.util.Calendar;
+
 /**
  * Created by layely on 6/18/16.
  * format du mois : MM/YYYY
  */
-public class Mois {
+public class Mois implements Comparable<Mois> {
     /*On commence à compter à partir de 1
         donc on a Janvier = 1, Fevrier = 2 ... Decembre = 12
     */
@@ -30,6 +32,12 @@ public class Mois {
 
     }
 
+    public static Mois extractMois(Calendar calendar) {
+        int m = calendar.get(Calendar.MONTH);
+        int a = calendar.get(Calendar.YEAR);
+        return new Mois(m, a);
+    }
+
     @Override
     public String toString() {
         return numero + "/" + annee;
@@ -49,5 +57,37 @@ public class Mois {
 
     public void setAnnee(int annee) {
         this.annee = annee;
+    }
+
+    @Override
+    public int compareTo(Mois another) {
+        if (this.annee == another.annee)
+            return this.numero - another.numero;
+        return this.annee - another.annee;
+    }
+
+    public boolean equals(Mois another) {
+        return (this.compareTo(another) == 0 ? true : false);
+    }
+
+    public boolean isAfter(Mois another) {
+        return (this.compareTo(another) > 0 ? true : false);
+    }
+
+    public boolean isBefore(Mois another) {
+        return (!isAfter(another) && !equals(another));
+    }
+
+    public boolean isBefore(Calendar calendar) {
+        return this.isBefore(extractMois(calendar));
+    }
+
+    public boolean isAfter(Calendar calendar) {
+        return this.isAfter(extractMois(calendar));
+    }
+
+    public boolean includes(Calendar calendar) {
+        Mois mois = extractMois(calendar);
+        return this.equals(mois);
     }
 }
