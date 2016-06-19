@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ly.badiane.budgetmanager_finalandroidproject.vues.DepenseActivity">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
     <TextView
         android:id="@+id/textmontant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="montant"
+        android:text="@string/montant"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
@@ -28,59 +31,63 @@
         android:id="@+id/textcategories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Categories"
+        android:text="@string/categories"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <EditText
+    <Spinner
         android:id="@+id/textlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:entries="@array/arrayCategoris"></Spinner>
+
+
 
     <TextView
         android:id="@+id/textviewNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="notes"
+        android:text="@string/notes"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
         android:id="@+id/editnote"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="none" />
 
     <TextView
         android:id="@+id/textdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
         android:id="@+id/editdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="none"
         android:singleLine="true" />
 
     <TextView
         android:id="@+id/textviewF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="frequences"
+        android:text="@string/frequences"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <EditText
+    <Spinner
         android:id="@+id/edittextFrequnces"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true" />
-
+        android:entries="@array/arrayfrequences"></Spinner>
     <Button
         android:id="@+id/buttonvalider"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="valider" />
-
+        android:text="@string/valider" />
 </LinearLayout>
+
+
+
+
+</ScrollView>

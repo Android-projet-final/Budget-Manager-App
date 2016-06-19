@@ -14,19 +14,16 @@ import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 /**
  * Created by badiane on 13/06/2016.
  */
-public class CategorieView extends RelativeLayout {
+public class CategoriesView extends RelativeLayout {
     private ImageView img;
     private TextView txt;
-
-    public CategorieView(Context context, AttributeSet attrs) {
+    public CategoriesView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
-
-    public static CategorieView create(ViewGroup parent) {
+    public static CategoriesView create(ViewGroup parent) {
         LayoutInflater li =
                 LayoutInflater.from(parent.getContext());
-        CategorieView itemView = (CategorieView)
+        CategoriesView itemView = (CategoriesView)
                 li.inflate(R.layout.item_categories, parent, false);
         itemView.findViews();
         return itemView;

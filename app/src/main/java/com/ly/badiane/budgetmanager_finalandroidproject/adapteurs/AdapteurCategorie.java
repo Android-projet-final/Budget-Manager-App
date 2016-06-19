@@ -21,10 +21,10 @@ public class AdapteurCategorie extends ArrayAdapter<Categorie> {
 
     @Override
     public View getView(int position, View recup, ViewGroup parent) {
-// créer ou récupérer un FinancesView
-        CategorieView vueItem = (CategorieView) recup;
+// créer ou récupérer un View
+        CategoriesView vueItem = (CategoriesView) recup;
         if (vueItem == null)
-            vueItem = CategorieView.create(parent); // <==(!!)
+            vueItem = CategoriesView.create(parent); // <==(!!)
 // afficher les valeurs
         vueItem.display(super.getItem(position));
         return vueItem;

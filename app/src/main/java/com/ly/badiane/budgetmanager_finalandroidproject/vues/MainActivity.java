@@ -106,6 +106,8 @@ private Intent activitySwitcher; //pour changer d'activiter
             case R.id.action_alarm:
                 return true;
             case R.id.addbudget:
+                activitySwitcher = new Intent(this,BudgetActivty.class);
+                startActivity(activitySwitcher);
                 return true;
             case R.id.adddepenses:
                 activitySwitcher = new Intent(this,DepenseActivity.class);
