@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             List<Transaction> listDesTransactionsDuSlide;
 
             if (numSlide < listeDesMois.size()) {
-                moisDuFragment = listeDesMois.get(numSlide);
+                moisDuFragment = listeDesMois.get(numSlide - 1);
                 listDesTransactionsDuSlide = transactionDAO.listDuMois(moisDuFragment);
             } else {
                 // Page Futures transaction
@@ -182,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
 
             ListView listView = (ListView) rootView.findViewById(R.id.listview);
             listView.setAdapter(new ListAdapteurFinance(mainContext, listDesTransactionsDuSlide));
+
+            TextView emptyView = new TextView(mainContext);
             return rootView;
         }
     }
@@ -200,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override

@@ -13,14 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/imageCategories"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageCategories"/>
+        android:layout_toRightOf="@+id/imageCategories"
+        android:text="Categorie" />
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txtcategories"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/txtcategories"/>
+        android:layout_toRightOf="@+id/txtcategories"
+        android:text="Date" />
 
     <TextView
         android:id="@+id/montant"
@@ -28,5 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/date"
         android:layout_marginLeft="100dp"
-        android:layout_toRightOf="@+id/date"/>
+        android:layout_toRightOf="@+id/date"
+        android:text="@string/montant" />
 </com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView>

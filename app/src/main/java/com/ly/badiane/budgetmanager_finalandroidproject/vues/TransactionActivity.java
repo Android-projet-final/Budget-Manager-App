@@ -176,8 +176,8 @@ public class TransactionActivity extends AppCompatActivity {
 
             GregorianCalendar datePicked = new GregorianCalendar();
             datePicked.set(year, month, day);
-            if (calendarToday.equals(datePicked))
-                datePicker.setText(getResources().getString(R.string.today));
+//            if (calendarToday.equals(datePicked))
+//                datePicker.setText(getResources().getString(R.string.today));
 
         }
     }
