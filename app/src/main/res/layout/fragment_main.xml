@@ -29,6 +29,7 @@
                 android:textSize="@dimen/h2" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,14 +73,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Différence"
-                android:textColor="@color/BLUE"
-                android:textSize="@dimen/h4" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_difference"
@@ -88,7 +93,7 @@
                 android:gravity="end"
                 android:text="total"
                 android:textColor="@color/BLUE"
-                android:textSize="@dimen/h4" />
+                android:textSize="@dimen/h3" />
         </LinearLayout>
 
     </LinearLayout>

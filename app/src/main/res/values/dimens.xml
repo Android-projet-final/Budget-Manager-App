@@ -3,6 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="appbar_padding_top">0dp</dimen>
-    <dimen name="h4">15dp</dimen>
+    <dimen name="h1">30dp</dimen>
     <dimen name="h2">25dp</dimen>
+    <dimen name="h3">20dp</dimen>
+    <dimen name="h4">15dp</dimen>
+    <dimen name="h5">10dp</dimen>
+    <dimen name="h6">5dp</dimen>
 </resources>

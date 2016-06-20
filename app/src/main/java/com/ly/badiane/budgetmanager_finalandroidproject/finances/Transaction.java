@@ -3,6 +3,7 @@ package com.ly.badiane.budgetmanager_finalandroidproject.finances;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by badiane on 12/06/2016.
@@ -53,6 +54,35 @@ public class Transaction {
         this.id = id;
     }
 
+    public static Double difference(List<Transaction> list) {
+        return totalBudget(list) - totalExpensese(list);
+    }
+
+    public static Double totalBudget(List<Transaction> list) {
+        double sum = 0;
+        for (Transaction t : list) {
+            if (t.isBudget())
+                sum += t.getMontant();
+        }
+        return sum;
+    }
+
+    public static Double totalExpensese(List<Transaction> list) {
+        double sum = 0;
+        for (Transaction t : list) {
+            if (t.isExpensise())
+                sum += t.getMontant();
+        }
+        return sum;
+    }
+
+    public boolean isBudget() {
+        return (type == ENTREE ? true : false);
+    }
+
+    public boolean isExpensise() {
+        return !isBudget();
+    }
 
     //Getters and Setters
     public int getType() {
@@ -81,7 +111,6 @@ public class Transaction {
 
     public String getNote() {
         return note;
-
     }
 
     public void setNote(String note) {

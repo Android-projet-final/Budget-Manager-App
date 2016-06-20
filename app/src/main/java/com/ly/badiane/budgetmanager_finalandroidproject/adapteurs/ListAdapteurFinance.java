@@ -36,6 +36,7 @@ public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
         TextView textViewCategorie = (TextView) row.findViewById(R.id.txtcategories);
         TextView textViewDate = (TextView) row.findViewById(R.id.date);
         TextView textViewMontant = (TextView) row.findViewById(R.id.montant);
+        TextView textViewType = (TextView) row.findViewById(R.id.row_textview_type);
 
         Transaction transaction = getItem(position);
 
@@ -44,6 +45,11 @@ public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
         textViewDate.setText(Utilitaire.calandarToString(transaction.getDate()));
         textViewMontant.setText(transaction.getMontant().toString());
 
+        int typeResId = R.string.despense;
+        if (transaction.isBudget())
+            typeResId = R.string.budget;
+
+        textViewType.setText(typeResId);
         return row;
     }
 

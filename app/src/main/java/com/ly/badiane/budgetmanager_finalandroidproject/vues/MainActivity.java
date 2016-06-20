@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -188,7 +189,19 @@ public class MainActivity extends AppCompatActivity {
             ListView listView = (ListView) rootView.findViewById(R.id.listview);
             listView.setAdapter(new ListAdapteurFinance(mainContext, listDesTransactionsDuSlide));
 
-            TextView emptyView = new TextView(mainContext);
+            final Double totalDepense = Transaction.totalExpensese(listDesTransactionsDuSlide);
+            final Double totalBudet = Transaction.totalBudget(listDesTransactionsDuSlide);
+            final Double difference = totalBudet - totalDepense;
+
+            textTotalDepense.setText(totalDepense.toString());
+            textTotalBudget.setText(totalBudet.toString());
+            textViewDifference.setText(difference.toString());
+
+            if (difference < 0)
+                textViewDifference.setTextColor(Color.RED);
+            else
+                textViewDifference.setTextColor(Color.GREEN);
+
             return rootView;
         }
     }

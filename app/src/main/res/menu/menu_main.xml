@@ -25,7 +25,7 @@
                 android:id="@+id/adddepenses"
 
                 android:orderInCategory="200"
-                android:title="@string/despenses"
+                android:title="@string/despense"
                 app:showAsAction="never" />
         </menu>
     </item>
