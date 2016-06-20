@@ -14,10 +14,11 @@ public class Categorie {
         ALL = new ArrayList<>();
         ALL.add(new Categorie(0, R.string.shoping, R.drawable.ic_add_shopping_cart_black_24dp));
         ALL.add(new Categorie(1, R.string.voyage, R.drawable.ic_flight_black_24dp));
-        ALL.add(new Categorie(2, R.string.carmotor, R.drawable.ic_sentiment_neutral_black_24dp)); // TODO
-        ALL.add(new Categorie(3, R.string.divers, R.drawable.ic_local_gas_station_black_24dp));
-        ALL.add(new Categorie(4, R.string.food, R.drawable.ic_restaurant_black_24dp));
-        ALL.add(new Categorie(5, R.string.eduction, R.drawable.ic_sentiment_neutral_black_24dp));//TODO
+        ALL.add(new Categorie(2, R.string.carmotor, R.drawable.ic_local_gas_station_black_24dp));
+        ALL.add(new Categorie(3, R.string.food, R.drawable.ic_restaurant_black_24dp));
+        ALL.add(new Categorie(4, R.string.eduction, R.drawable.education_black)); //TODO
+        ALL.add(new Categorie(5, R.string.transport, R.drawable.transport_black)); //TODO
+        ALL.add(new Categorie(6, R.string.divers, R.drawable.divers));
     }
 
     int id;

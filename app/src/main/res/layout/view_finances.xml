@@ -1,35 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/WHITE"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageCategories"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
-    <TextView
-        android:id="@+id/txtcategories"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageCategories"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageCategories"
-        android:text="Categorie" />
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/txtcategories"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/txtcategories"
-        android:text="Date" />
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
-    <TextView
-        android:id="@+id/montant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/date"
-        android:layout_marginLeft="100dp"
-        android:layout_toRightOf="@+id/date"
-        android:text="@string/montant" />
-</com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.FinancesView>
+        <TextView
+            android:id="@+id/row_textview_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dépense"
+            android:textColor="@color/BLACK"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/imageCategories"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/txtcategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageCategories"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageCategories"
+            android:text="Categorie" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/txtcategories"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageCategories"
+            android:gravity="bottom"
+            android:text="Date" />
+
+        <TextView
+            android:id="@+id/montant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/date"
+            android:layout_toRightOf="@+id/date"
+            android:gravity="end"
+            android:text="@string/montant" />
+    </RelativeLayout>
+</LinearLayout>

@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(Color.WHITE);
+//        toolbar.setBackgroundColor(Color.BLACK);
         getSupportActionBar().setIcon(R.drawable.financial);
 
         mainContext = this;
@@ -80,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
 
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 
     private void premierLancementinsertion() {
