@@ -23,7 +23,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class BudgetActivty extends AppCompatActivity {
+public class TransactionActivity extends AppCompatActivity {
 
     private final static Calendar calendar = Calendar.getInstance();
     private static EditText datePicker;
@@ -40,7 +40,7 @@ public class BudgetActivty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_budget_activty);
+        setContentView(R.layout.activity_transaction);
         setElement();
         setAction(); //set up listeners
     }
@@ -75,7 +75,7 @@ public class BudgetActivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int montant = Integer.parseInt(montbudget.getText().toString());
-                Categorie categorie = Categorie.getInstance(lisbudget.getSelectedItemPosition());
+                Categorie categorie = ((Categorie) lisbudget.getSelectedItem());
                 String note = editTextNote.getText().toString();
 
                 Calendar date;
@@ -88,6 +88,8 @@ public class BudgetActivty extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
+                String frequence = (String) freqbudget.getSelectedItem();
             }
         });
 

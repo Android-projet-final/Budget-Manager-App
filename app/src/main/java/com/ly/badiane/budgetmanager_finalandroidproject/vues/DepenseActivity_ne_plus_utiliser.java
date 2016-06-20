@@ -17,7 +17,7 @@ import com.ly.badiane.budgetmanager_finalandroidproject.R;
 
 import java.util.Calendar;
 
-public class DepenseActivity extends Activity {
+public class DepenseActivity_ne_plus_utiliser extends Activity {
 
     private final static Calendar calendar = Calendar.getInstance();
     private static EditText date ;
