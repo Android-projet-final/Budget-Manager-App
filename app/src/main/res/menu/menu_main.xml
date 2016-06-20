@@ -8,14 +8,6 @@
         android:orderInCategory="300"
         android:title="@string/action_settings"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_alarm"
-        android:icon="@drawable/ic_alarm_add_black_24dp"
-        android:orderInCategory="200"
-        android:title="@string/action_alarm"
-        app:showAsAction="ifRoom" />
-    <!--android:icon="@drawable/ic_add_box_black_24dp"-->
     <item
         android:id="@+id/add"
         android:icon="@drawable/ic_add_box_black_24dp"

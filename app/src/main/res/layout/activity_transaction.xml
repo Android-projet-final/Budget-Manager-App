@@ -10,7 +10,7 @@
     tools:context=".vues.TransactionActivity">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
         android:id="@+id/textmontant"
@@ -51,7 +51,8 @@
         android:id="@+id/notebudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="none" />
+        android:inputType="none"
+        android:maxLines="2" />
 
     <TextView
         android:id="@+id/textdate"

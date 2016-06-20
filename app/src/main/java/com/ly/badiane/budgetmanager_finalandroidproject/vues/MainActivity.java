@@ -109,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 activitySwitcher = new Intent(this, SettingsActivity.class);
                 startActivity(activitySwitcher);
                 return true;
-            case R.id.action_alarm:
-                return true;
             case R.id.addbudget:
                 activitySwitcher = new Intent(this, TransactionActivity.class);
                 activitySwitcher.putExtra("type", Transaction.ENTREE);
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             TextView textSectionLabel = (TextView) rootView.findViewById(R.id.section_label);
-            textSectionLabel.setText(getString(R.string.section_format, numSlide));
+//            textSectionLabel.setText(getString(R.string.section_format, numSlide));
 
             TextView textTotalDepense = (TextView) rootView.findViewById(R.id.text_total_depense);
 

@@ -90,22 +90,21 @@
     <string name="date">Date</string>
     <string name="frequences">frequences</string>
     <string name="valider">valider</string>
-    <string name="today">Aujourd\'hui</string>
-
     <string-array name="arrayfrequences">
-        <item>Une fois seulement</item>
-        <item>Chaque Jour</item>
-        <item>Chaque Semaine</item>
-        <item>Chaque Mois</item>
+        <item>once</item>
+        <item>everyday</item>
+        <item>weekly</item>
+        <item>monthly</item>
     </string-array>
-
     <string-array name="arrayCategoris">
         <item>travel</item>
-        <item>shoping</item>
+        <item>shopping</item>
         <item>eduction</item>
         <item>food</item>
         <item>car/motor</item>
         <item>divers</item>
     </string-array>
-
+<string name="today">
+    today
+</string>
 </resources>
