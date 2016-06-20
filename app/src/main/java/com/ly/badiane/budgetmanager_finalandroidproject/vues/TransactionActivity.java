@@ -126,7 +126,7 @@ public class TransactionActivity extends AppCompatActivity {
 
     private void buttonValiderAction() {
         double montant = (double) Integer.parseInt(montbudget.getText().toString());
-        Categorie categorie = ((Categorie) lisbudget.getSelectedItem());
+        Categorie categorie = ((Categorie) lisbudget.getAdapter().getItem(lisbudget.getSelectedItemPosition()));
         String note = editTextNote.getText().toString();
 
         GregorianCalendar date = null;

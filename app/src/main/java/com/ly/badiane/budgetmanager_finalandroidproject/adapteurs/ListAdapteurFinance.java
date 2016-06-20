@@ -25,13 +25,6 @@ public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
 
     @Override
     public View getView(int position, View recup, ViewGroup parent) {
-//// créer ou récupérer un FinancesView
-//        FinancesView vueItem = (FinancesView) recup;
-//        if (vueItem == null)
-//            vueItem = FinancesView.create(parent); // <==(!!)
-//// afficher les valeurs
-//        vueItem.display(super.getItem(position));
-//        return vueItem;
 
         View row = recup;
         if (row == null) {

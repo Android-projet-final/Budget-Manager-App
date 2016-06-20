@@ -21,40 +21,40 @@ public class Categorie {
         ALL.add(new Categorie(6, R.string.divers, R.drawable.divers));
     }
 
-    int id;
-    private int nomCategorie;
-    private int img;
+    private int id;
+    private int label;
+    private int icon;
 
-    public Categorie(int id, int nomCategorie, int img) {
-        this.nomCategorie = nomCategorie;
-        this.img = img;
+    public Categorie(int id, int label, int icon) {
+        this.label = label;
+        this.icon = icon;
     }
 
-   // public int
-   public static Categorie getInstance(int i) {
-        if(i<=5 && i>=0)
-                  return ALL.get(i);
-                          return null;
+    // public int
+    public static Categorie getInstance(int i) {
+        if (i <= (ALL.size() - 1) && i >= 0)
+            return ALL.get(i);
+        return null;
     }
 
 
-    public int getNomCategorie() {
-        return nomCategorie;
+    public int getLabel() {
+        return label;
     }
 
-    public void setNomCategorie(int nomCategorie) {
-        this.nomCategorie = nomCategorie;
+    public void setLabel(int label) {
+        this.label = label;
     }
 
-    public int getId(){
-        return  id;
+    public int getId() {
+        return id;
     }
 
     public int getStringResId() {
-        return this.nomCategorie;
+        return this.label;
     }
 
     public int getDrawableResId() {
-        return img;
+        return icon;
     }
 }
