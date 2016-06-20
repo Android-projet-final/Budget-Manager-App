@@ -3,6 +3,7 @@ package com.ly.badiane.budgetmanager_finalandroidproject.vues;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,29 +17,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
+import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.ListAdapteurFinance;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.MoisEcoulesDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-private Intent activitySwitcher; //pour changer d'activiter
-
+    public static Context mainContext;
+    protected static TransactionDAO transactionDAO;
+    private static MoisEcoulesDAO moisEcoulesDAO;
+    private Intent activitySwitcher; //pour changer d'activiter
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     private ViewPager mViewPager;
-
-    private MoisEcoulesDAO moisEcoulesDAO;
-    private TransactionDAO transactionDAO;
     private UtilitaireDAO utilitaireDAO;
-
     //    private int nbSlides = 0; //Contient le nombre de pages ou de slides ou encore de tabulation dans le ViewPager
     private ArrayList<Mois> moisEcoulesList;
 
@@ -49,6 +51,9 @@ private Intent activitySwitcher; //pour changer d'activiter
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(Color.WHITE);
+
+        mainContext = this;
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
 
@@ -71,6 +76,7 @@ private Intent activitySwitcher; //pour changer d'activiter
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
 
 
     }
@@ -98,7 +104,7 @@ private Intent activitySwitcher; //pour changer d'activiter
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id){
+        switch (id) {
             case R.id.action_settings:
                 activitySwitcher = new Intent(this, SettingsActivity.class);
                 startActivity(activitySwitcher);
@@ -106,11 +112,11 @@ private Intent activitySwitcher; //pour changer d'activiter
             case R.id.action_alarm:
                 return true;
             case R.id.addbudget:
-                activitySwitcher = new Intent(this,BudgetActivty.class);
+                activitySwitcher = new Intent(this, BudgetActivty.class);
                 startActivity(activitySwitcher);
                 return true;
             case R.id.adddepenses:
-                activitySwitcher = new Intent(this,DepenseActivity.class);
+                activitySwitcher = new Intent(this, DepenseActivity.class);
                 startActivity(activitySwitcher);
                 return true;
 
@@ -148,10 +154,32 @@ private Intent activitySwitcher; //pour changer d'activiter
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            TextView textView1 = (TextView) rootView.findViewById(R.id.title);
-//            textView1.setText();
+
+            int numSlide = getArguments().getInt(ARG_SECTION_NUMBER);
+            ArrayList<Mois> listeDesMois = moisEcoulesDAO.liste();
+            Mois moisDuFragment;
+            List<Transaction> listDesTransactionsDuSlide;
+
+            if (numSlide < listeDesMois.size()) {
+                moisDuFragment = listeDesMois.get(numSlide);
+                listDesTransactionsDuSlide = transactionDAO.listDuMois(moisDuFragment);
+            } else {
+                // Page Futures transaction
+                Mois ceMoisCi = listeDesMois.get(listeDesMois.size() - 1);
+                listDesTransactionsDuSlide = transactionDAO.listApresMois(ceMoisCi);
+            }
+
+            TextView textSectionLabel = (TextView) rootView.findViewById(R.id.section_label);
+            textSectionLabel.setText(getString(R.string.section_format, numSlide));
+
+            TextView textTotalDepense = (TextView) rootView.findViewById(R.id.text_total_depense);
+
+            TextView textTotalBudget = (TextView) rootView.findViewById(R.id.text_total_budget);
+
+            TextView textViewDifference = (TextView) rootView.findViewById(R.id.text_difference);
+
+            ListView listView = (ListView) rootView.findViewById(R.id.listview);
+            listView.setAdapter(new ListAdapteurFinance(mainContext, listDesTransactionsDuSlide));
             return rootView;
         }
     }
@@ -185,6 +213,8 @@ private Intent activitySwitcher; //pour changer d'activiter
                 return "Mois Futures"; //TODO internasionalisation
             if (position == moisEcoulesList.size() - 1)
                 return "Ce mois-ci"; //TODO internasionalisation
+            if (position == moisEcoulesList.size() - 2)
+                return "Mois dernier";//TODO INTERNATIONALISATION
             return moisEcoulesList.get(position).toString();
         }
     }
