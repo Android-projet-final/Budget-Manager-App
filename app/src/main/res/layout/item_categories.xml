@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.CategorieView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/imageCat"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
     <TextView
         android:id="@+id/txtcat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageCat"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageCat"/>
+        android:text="hello"
+        android:textSize="25dp" />
 
-
-</com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.CategorieView>
+</LinearLayout>

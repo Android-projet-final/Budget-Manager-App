@@ -90,6 +90,7 @@
     <string name="date">Date</string>
     <string name="frequences">frequences</string>
     <string name="valider">valider</string>
+    <string name="today">Aujourd\'hui</string>
     <string-array name="arrayfrequences">
         <item>everyday</item>
         <item>weekly</item>

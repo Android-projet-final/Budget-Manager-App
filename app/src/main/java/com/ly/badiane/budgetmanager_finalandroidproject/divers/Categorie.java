@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by badiane on 13/06/2016.
  */
 public class Categorie {
-    public static  ArrayList<Categorie> ALL;
+    public static final ArrayList<Categorie> ALL;
 
     static {
         ALL = new ArrayList<>();
@@ -35,6 +35,7 @@ public class Categorie {
                   return ALL.get(i);
                           return null;
     }
+
 
     public int getNomCategorie() {
         return nomCategorie;

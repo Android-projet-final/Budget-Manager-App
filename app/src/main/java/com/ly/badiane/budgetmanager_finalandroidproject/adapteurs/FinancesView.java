@@ -33,11 +33,12 @@ public class FinancesView extends RelativeLayout {
         itemView.findViews();
         return itemView;
     }
-    private void findViews(){
-    montant = (TextView)findViewById(R.id.montant);
-        date = (TextView)findViewById(R.id.date);
-        categoriesTxt = (TextView)findViewById(R.id.txtcategories);
-        categorieImage = (ImageView)findViewById(R.id.imageCategories);
+
+    private void findViews() {
+        montant = (TextView) findViewById(R.id.montant);
+        date = (TextView) findViewById(R.id.date);
+        categoriesTxt = (TextView) findViewById(R.id.txtcategories);
+        categorieImage = (ImageView) findViewById(R.id.imageCategories);
     }
 
     public void display(final Transaction transaction) {
