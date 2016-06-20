@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             List<Transaction> listDesTransactionsDuSlide;
 
             if (numSlide < listeDesMois.size()) {
-                moisDuFragment = listeDesMois.get(numSlide - 1);
+                moisDuFragment = listeDesMois.get(numSlide);
                 listDesTransactionsDuSlide = transactionDAO.listDuMois(moisDuFragment);
             } else {
                 // Page Futures transaction

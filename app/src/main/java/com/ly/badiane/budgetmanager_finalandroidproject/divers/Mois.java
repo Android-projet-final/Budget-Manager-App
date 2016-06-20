@@ -33,7 +33,7 @@ public class Mois implements Comparable<Mois> {
     }
 
     public static Mois extractMois(Calendar calendar) {
-        int m = calendar.get(Calendar.MONTH);
+        int m = calendar.get(Calendar.MONTH) + 1;
         int a = calendar.get(Calendar.YEAR);
         return new Mois(m, a);
     }
