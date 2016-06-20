@@ -21,9 +21,6 @@
         <activity
             android:name=".activites.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".vues.DepenseActivity_ne_plus_utiliser"
-            android:label="@string/title_activity_depense" />
         <activity android:name=".vues.TransactionActivity" />
 
     </application>

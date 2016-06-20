@@ -32,7 +32,7 @@
             <item
                 android:id="@+id/adddepenses"
 
-                android:orderInCategory="100"
+                android:orderInCategory="200"
                 android:title="@string/despenses"
                 app:showAsAction="never" />
         </menu>
