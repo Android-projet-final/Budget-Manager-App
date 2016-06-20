@@ -113,10 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.addbudget:
                 activitySwitcher = new Intent(this, TransactionActivity.class);
+                activitySwitcher.putExtra("type", Transaction.ENTREE);
                 startActivity(activitySwitcher);
                 return true;
             case R.id.adddepenses:
-                activitySwitcher = new Intent(this, DepenseActivity_ne_plus_utiliser.class);
+                activitySwitcher = new Intent(this, TransactionActivity.class);
+                activitySwitcher.putExtra("type", Transaction.SORTIE);
                 startActivity(activitySwitcher);
                 return true;
 

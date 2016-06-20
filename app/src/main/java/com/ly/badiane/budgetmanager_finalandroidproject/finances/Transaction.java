@@ -14,14 +14,13 @@ public class Transaction {
     //  private static int i = 0; //je pense on en aura pas besoin car on recupere dans la base de donnée
 
     //Definition des constantes
-    private static final int ENTREE = 101;
-    private static final int SORTIE = 102;
+    public static final int ENTREE = 101;
+    public static final int SORTIE = 102;
 
-    private static final int MENSUEL = 201;
-    private static final int DEUX_SEMAINES = 202;
-    private static final int HEBDOMADAIRE = 203;
-    private static final int JOURNALIER = 204;
-    private static final int UNE_FOIS = 205;
+    public static final int UNE_FOIS = 200;
+    public static final int JOURNALIER = 201;
+    public static final int HEBDOMADAIRE = 202;
+    public static final int MENSUEL = 203;
 
     private int id;
     private Double montant;
@@ -37,7 +36,7 @@ public class Transaction {
             //Exception de type TransactionTypeNotExist doit etre lancée
         }
 
-        if (frequence != DEUX_SEMAINES && frequence != MENSUEL && frequence != HEBDOMADAIRE && frequence != JOURNALIER && frequence != UNE_FOIS) {
+        if (frequence != MENSUEL && frequence != HEBDOMADAIRE && frequence != JOURNALIER && frequence != UNE_FOIS) {
             //Exception de type TransactionFrequenceNotExist
         }
 

@@ -18,6 +18,8 @@ import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.AdapteurCategorie;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -37,10 +39,15 @@ public class TransactionActivity extends AppCompatActivity {
     private Spinner freqbudget;
     private Spinner lisbudget;
 
+    private TransactionDAO transactionDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+
+        transactionDAO = new TransactionDAO(this);
+
         setElement();
         setAction(); //set up listeners
     }
@@ -74,22 +81,7 @@ public class TransactionActivity extends AppCompatActivity {
         valbudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int montant = Integer.parseInt(montbudget.getText().toString());
-                Categorie categorie = ((Categorie) lisbudget.getSelectedItem());
-                String note = editTextNote.getText().toString();
-
-                Calendar date;
-                try {
-                    String dateStr = datePicker.getText().toString();
-                    if (dateStr.equalsIgnoreCase(todayStr))
-                        date = new GregorianCalendar();
-                    else
-                        date = Utilitaire.stringToCalandar(datePicker.getText().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                String frequence = (String) freqbudget.getSelectedItem();
+                buttonValiderAction();
             }
         });
 
@@ -130,6 +122,31 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void buttonValiderAction() {
+        double montant = (double) Integer.parseInt(montbudget.getText().toString());
+        Categorie categorie = ((Categorie) lisbudget.getSelectedItem());
+        String note = editTextNote.getText().toString();
+
+        GregorianCalendar date = null;
+        try {
+            String dateStr = datePicker.getText().toString();
+            if (dateStr.equalsIgnoreCase(todayStr))
+                date = new GregorianCalendar();
+            else
+                date = Utilitaire.stringToCalandar(datePicker.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        int frequence = Transaction.JOURNALIER + freqbudget.getSelectedItemPosition();
+
+        int typeDeTransaction = getIntent().getIntExtra("type", -1); //Entree ou Sortie
+        Transaction transaction = new Transaction(typeDeTransaction, montant, categorie, note, date, frequence);
+
+        transactionDAO.ajouterTransaction(transaction);
+        finish();
     }
 
 
