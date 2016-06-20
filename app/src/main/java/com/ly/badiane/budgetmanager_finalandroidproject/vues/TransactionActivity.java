@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -126,7 +127,7 @@ public class TransactionActivity extends AppCompatActivity {
 
     private void buttonValiderAction() {
         double montant = (double) Integer.parseInt(montbudget.getText().toString());
-        Categorie categorie = ((Categorie) lisbudget.getAdapter().getItem(lisbudget.getSelectedItemPosition()));
+        Categorie categorie = Categorie.getInstance(lisbudget.getSelectedItemPosition());
         String note = editTextNote.getText().toString();
 
         GregorianCalendar date = null;
@@ -146,6 +147,8 @@ public class TransactionActivity extends AppCompatActivity {
         Transaction transaction = new Transaction(typeDeTransaction, montant, categorie, note, date, frequence);
 
         transactionDAO.ajouterTransaction(transaction);
+        Log.i(Utilitaire.MY_LOG, "num on the spinner : " + lisbudget.getSelectedItemPosition());
+        Log.i(Utilitaire.MY_LOG, "id categorie selected : " + categorie.getId());
         finish();
     }
 
