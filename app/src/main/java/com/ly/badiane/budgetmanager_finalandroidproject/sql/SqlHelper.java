@@ -12,6 +12,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final String TABLE_TRANSACTION = "Transac";
     public static final String TABLE_MOIS_ECOULES = "MoisEcoules";
     public static final String TABLE_UTILITAIRE = "Utilitaire";
+    public static final String TABLE_ALARM = "Alarm";
 
     public static final String COLUMN_TRANSACTION_ID = "trans_id";
     public static final String COLUMN_TRANSACTION_TYPE = "type";
@@ -24,7 +25,10 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MOIS_ECOULES_MOIS = "mois"; //format MM/YYYY
     public static final String COLUMN_UTILITAIRE_ID = "util_id";
     public static final String COLUMN_UTILITAIRE_VALUE = "valeur";
+    public static final String COLUMN_ALARM_DATE_TIME = "date_time";
+
     public static final String NB_LANCEMENT_APP = "NB_LANCEMENT_APP";
+
     private final static String databaseName = "budgetmanager.db";//name of database
     private final static int VersionDataBase = 2;//Verion of database
 
@@ -45,7 +49,7 @@ public class SqlHelper extends SQLiteOpenHelper {
                 COLUMN_TRANSACTION_FREQUENCE + " INTEGER" +
                 ")";
 
-        //requete de creation de la table des mois qui se sont écoulés
+//        requete de creation de la table des mois qui se sont écoulés
         String requeteCreationTableMoisEcoules = "CREATE TABLE " + TABLE_MOIS_ECOULES + " (" +
                 COLUMN_MOIS_ECOULES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_MOIS_ECOULES_MOIS + " TEXT)";
@@ -53,10 +57,18 @@ public class SqlHelper extends SQLiteOpenHelper {
 //        requete de creation de la table Utilitaire contenant quelques données utiles
         String requeteCreationTableUtilitaire = "CREATE TABLE " + TABLE_UTILITAIRE + " (" + COLUMN_UTILITAIRE_ID + " Text PRIMARY KEY, " + COLUMN_UTILITAIRE_VALUE + " Text)";
 
+//        requete de creation de la table des alarmes
+        String requeteCreationTableAlarm = "CREATE TABLE " + TABLE_ALARM + " (" +
+                COLUMN_TRANSACTION_ID + " INTEGER, " +
+                COLUMN_ALARM_DATE_TIME + " TEXT, " +
+                "FOREIGN KEY(" + COLUMN_TRANSACTION_ID + ") REFERENCES " + TABLE_TRANSACTION + "(" + COLUMN_TRANSACTION_ID + ") " +
+                "ON UPDATE CASCADE ON DELETE CASCADE" +
+                ")";
 
         db.execSQL(requeteCreationTableTransaction);
         db.execSQL(requeteCreationTableMoisEcoules);
         db.execSQL(requeteCreationTableUtilitaire);
+        db.execSQL(requeteCreationTableAlarm);
 
 //      Ajout de la ligne qui contient le nombre de fois que l'application a été lancé
         String requeteAjoutLigne_nb_lancement_app = "INSERT INTO " + TABLE_UTILITAIRE + " (" + COLUMN_UTILITAIRE_ID + ", " + COLUMN_UTILITAIRE_VALUE + ") values ('" + NB_LANCEMENT_APP + "', '0')";

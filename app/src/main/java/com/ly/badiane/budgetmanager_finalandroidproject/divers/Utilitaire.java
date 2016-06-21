@@ -21,6 +21,8 @@ public class Utilitaire {
         Date date = dateFormat.parse(dateStr);
         GregorianCalendar c = new GregorianCalendar();
         c.setTime(date);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
         return c;
     }
 
@@ -32,4 +34,35 @@ public class Utilitaire {
         String calandarStr = dateFormat.format(calendar.getTime());
         return calandarStr;
     }
+
+    public static String calendarToCompleteString(Calendar calendar) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(("dd/MM/yyyy HH:mm"));
+        String calandarStr = dateFormat.format(calendar.getTime());
+        return calandarStr;
+    }
+
+    public static Calendar completeStringToCalandar(String dateStr) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = dateFormat.parse(dateStr);
+        GregorianCalendar c = new GregorianCalendar();
+        c.setTime(date);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return c;
+    }
+
+    public static int compare(Calendar calendarA, Calendar calendarB) {
+
+        calendarA.set(Calendar.SECOND, 0);
+        calendarB.set(Calendar.SECOND, 0);
+        calendarA.set(Calendar.MILLISECOND, 0);
+        calendarB.set(Calendar.MILLISECOND, 0);
+
+        return calendarA.compareTo(calendarB);
+    }
+
+    public static boolean equals(Calendar a, Calendar b) {
+        return compare(a, b) == 0;
+    }
+
 }

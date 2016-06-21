@@ -25,11 +25,11 @@ public class Categorie {
 
     static {
         ALL_BUD = new ArrayList<>();
-        ALL_EXP.add(new Categorie(7, R.string.salary, R.drawable.salary));
-        ALL_EXP.add(new Categorie(8, R.string.gift, R.drawable.gift));
-        ALL_EXP.add(new Categorie(9, R.string.selling, R.drawable.selling));
-        ALL_EXP.add(new Categorie(10, R.string.award, R.drawable.award));
-        ALL_EXP.add(new Categorie(6, R.string.other, R.drawable.other));
+        ALL_BUD.add(new Categorie(7, R.string.salary, R.drawable.salary));
+        ALL_BUD.add(new Categorie(8, R.string.gift, R.drawable.gift));
+        ALL_BUD.add(new Categorie(9, R.string.selling, R.drawable.selling));
+        ALL_BUD.add(new Categorie(10, R.string.award, R.drawable.award));
+        ALL_BUD.add(new Categorie(6, R.string.other, R.drawable.other));
     }
 
     static {

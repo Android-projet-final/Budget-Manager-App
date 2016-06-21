@@ -134,7 +134,14 @@ public class TransactionDAO {
         return list;
     }
 
-
+    public Transaction dernierTransaction() {
+        List<Transaction> list = listeNonTriee();
+        int lastIndex = listeNonTriee().size() - 1;
+        if (lastIndex >= 0) {
+            return list.get(lastIndex);
+        }
+        return null;
+    }
     /*
      * Retourne la liste des transactions effectuées entre un mois A et B (inclus les mois effectués pendant A et B)
     * */

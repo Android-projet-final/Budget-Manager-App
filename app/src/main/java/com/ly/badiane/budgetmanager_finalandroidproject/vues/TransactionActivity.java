@@ -5,15 +5,18 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
@@ -21,6 +24,7 @@ import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.AdapteurCatego
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.AlarmDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 
 import java.text.ParseException;
@@ -40,8 +44,13 @@ public class TransactionActivity extends AppCompatActivity {
     private EditText editTextNote;
     private Spinner spinnerFrequence;
     private Spinner spinnerCategorie;
+    private CheckBox checkBoxAlarm;
+    private EditText editTextAlarm;
+
+    private Calendar alarmTime;
 
     private TransactionDAO transactionDAO;
+    private AlarmDAO alarmDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,7 @@ public class TransactionActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getIntent().getIntExtra("titleResID", 0));
 
         transactionDAO = new TransactionDAO(this);
+        alarmDAO = new AlarmDAO(this);
 
         setElement();
         setAction(); //set up listeners
@@ -84,6 +94,14 @@ public class TransactionActivity extends AppCompatActivity {
         mois = calendar.get(Calendar.MONTH);
         jour = calendar.get(Calendar.DAY_OF_MONTH);
         datePicker.setText(todayStr);
+
+        editTextAlarm = (EditText) findViewById(R.id.editTextAlarm);
+        checkBoxAlarm = (CheckBox) findViewById(R.id.checkboxAlarm);
+
+        alarmTime = new GregorianCalendar();
+        editTextAlarm.setText(Utilitaire.calendarToCompleteString(alarmTime));
+        editTextAlarm.setVisibility(View.GONE);
+
     }
 
     private void setAction() {
@@ -95,32 +113,23 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
 
-        spinnerFrequence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        editTextAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tabfreq[] = getResources().getStringArray(R.array.arrayfrequences);
-                Toast.makeText(getApplicationContext(), tabfreq[position], Toast.LENGTH_LONG).show();//TEST
-                //TODO
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                datetimeAlarm();
             }
         });
 
-//        spinnerCategorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String tabCat[] = getResources().getStringArray(R.array.arrayCategoris);
-//                //TODO
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        checkBoxAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (checkBoxAlarm.isChecked()) {
+                    editTextAlarm.setVisibility(View.VISIBLE);
+                } else {
+                    editTextAlarm.setVisibility(View.GONE);
+                }
+            }
+        });
 
     }
 
@@ -153,13 +162,28 @@ public class TransactionActivity extends AppCompatActivity {
         int typeDeTransaction = getIntent().getIntExtra("type", -1); //Entree ou Sortie
         Transaction transaction = new Transaction(typeDeTransaction, montant, categorie, note, date, frequence);
 
-        transactionDAO.ajouterTransaction(transaction);
+        if (transactionDAO.ajouterTransaction(transaction)) {
+            try {
+                manageAlarm();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         finish();
+    }
+
+    private void manageAlarm() throws Exception {
+        Transaction t = transactionDAO.dernierTransaction();
+        alarmDAO.supprimer(t.getId());
+        if (checkBoxAlarm.isChecked()) {
+            Calendar calandar = Utilitaire.completeStringToCalandar(editTextAlarm.getText().toString());
+            alarmDAO.ajouter(t.getId(), calandar);
+        }
     }
 
 
     private void showDatePickerDialog() {
-        DateSetForBudget newFragment = new DateSetForBudget();
+        DateSetter newFragment = new DateSetter();
         newFragment.show(getFragmentManager(), "DatePicker");
     }
 // Cette n'a pas besoin d'etre edité sauf en cas de D'erreur à signaler
@@ -186,7 +210,33 @@ public class TransactionActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class DateSetForBudget extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    public void datetimeAlarm() {
+        final View dialogView = View.inflate(this, R.layout.date_time_picker, null);
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+        dialogView.findViewById(R.id.date_time_set).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.date_picker);
+                TimePicker timePicker = (TimePicker) dialogView.findViewById(R.id.time_picker);
+
+                Calendar calendar = new GregorianCalendar(datePicker.getYear(),
+                        datePicker.getMonth(),
+                        datePicker.getDayOfMonth(),
+                        timePicker.getCurrentHour(),
+                        timePicker.getCurrentMinute());
+
+                alarmTime = calendar;
+                editTextAlarm.setText(Utilitaire.calendarToCompleteString(calendar));
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setView(dialogView);
+        alertDialog.show();
+    }
+
+    public static class DateSetter extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         private int jour = calendar.get(Calendar.DAY_OF_MONTH);
         private int mois = calendar.get(Calendar.MONTH);
         private int annee = calendar.get(Calendar.YEAR);
