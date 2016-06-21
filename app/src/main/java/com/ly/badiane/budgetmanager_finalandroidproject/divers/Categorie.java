@@ -1,7 +1,5 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.divers;
 
-import android.util.Log;
-
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 
 import java.util.ArrayList;
@@ -35,11 +33,10 @@ public class Categorie {
 
     // public int
     public static Categorie getInstance(int i) {
-//        if (i <= (ALL.size() - 1) && i >= 0) {
-        Log.i(Utilitaire.MY_LOG, "getInstance - categegId : " + ALL.get(1).id);
+        if (i <= (ALL.size() - 1) && i >= 0) {
             return ALL.get(i);
-//        }
-//        return null;
+        }
+        return null;
     }
 
 

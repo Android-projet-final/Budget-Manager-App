@@ -1,93 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".vues.TransactionActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/textmontant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/montant"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <EditText
-        android:id="@+id/montbudget"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:singleLine="true" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textcategories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/categories"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    <Spinner
-        android:id="@+id/catbubget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/arrayCategoris"></Spinner>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textmontant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/montant"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/franc"
+                    android:textSize="@dimen/h3" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/montbudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/h3"
+                android:gravity="end"
+                android:hint="@string/zero"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="@color/BLACK"
+                android:textSize="@dimen/h1" />
+
+            <TextView
+                android:id="@+id/textcategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categorie"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Spinner
+                android:id="@+id/catbubget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/arrayCategoris"
+                android:gravity="end"
+                android:textAlignment="textEnd" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/h3"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/textdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"
+                android:text="@string/date"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/datebudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/h3"
+                android:gravity="end"
+                android:inputType="none"
+                android:singleLine="true" />
 
 
+            <TextView
+                android:id="@+id/textviewNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/note"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:id="@+id/textviewNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notes"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+            <EditText
+                android:id="@+id/notebudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/h3"
+                android:gravity="end"
+                android:inputType="none"
+                android:maxLines="3"
+                android:textColor="@color/BLACK" />
 
-    <EditText
-        android:id="@+id/notebudget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="none"
-        android:maxLines="2" />
+            <TextView
+                android:id="@+id/textviewF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frequence"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:id="@+id/textdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:inputType="none"
-        android:text="@string/date"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+            <Spinner
+                android:id="@+id/freqbudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/arrayfrequences"
+                android:gravity="end" />
 
-    <EditText
-        android:id="@+id/datebudget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="none"
-        android:singleLine="true" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/h3"
+                android:background="@android:color/darker_gray" />
 
-    <TextView
-        android:id="@+id/textviewF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/frequences"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    <Spinner
-        android:id="@+id/freqbudget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/arrayfrequences"></Spinner>
-    <Button
-        android:id="@+id/valbudget"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/valider" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
-
-</ScrollView>

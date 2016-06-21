@@ -120,11 +120,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.addbudget:
                 activitySwitcher = new Intent(this, TransactionActivity.class);
                 activitySwitcher.putExtra("type", Transaction.ENTREE);
+                activitySwitcher.putExtra("titleResID", R.string.ajuster_budget);
                 startActivity(activitySwitcher);
                 return true;
             case R.id.adddepenses:
                 activitySwitcher = new Intent(this, TransactionActivity.class);
                 activitySwitcher.putExtra("type", Transaction.SORTIE);
+                activitySwitcher.putExtra("titleResID", R.string.ajouter_depense);
                 startActivity(activitySwitcher);
                 return true;
 
@@ -240,4 +242,5 @@ public class MainActivity extends AppCompatActivity {
             return moisEcoulesList.get(position).toString();
         }
     }
+
 }

@@ -3,13 +3,14 @@ package com.ly.badiane.budgetmanager_finalandroidproject.vues;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -34,11 +35,10 @@ public class TransactionActivity extends AppCompatActivity {
     private int jour;
     private int mois;
     private int annee;
-    private EditText montbudget;
+    private EditText editTextmontant;
     private EditText editTextNote;
-    private Button valbudget;
-    private Spinner freqbudget;
-    private Spinner lisbudget;
+    private Spinner spinnerFrequence;
+    private Spinner spinnerCategorie;
 
     private TransactionDAO transactionDAO;
 
@@ -46,6 +46,8 @@ public class TransactionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+
+        getSupportActionBar().setTitle(getIntent().getIntExtra("titleResID", 0));
 
         transactionDAO = new TransactionDAO(this);
 
@@ -61,46 +63,36 @@ public class TransactionActivity extends AppCompatActivity {
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.setFocusable(false);
         /******/
-        montbudget = (EditText) findViewById(R.id.montbudget);
-        freqbudget = (Spinner) findViewById(R.id.freqbudget);
+        editTextmontant = (EditText) findViewById(R.id.montbudget);
+        spinnerFrequence = (Spinner) findViewById(R.id.freqbudget);
 
-        lisbudget = (Spinner) findViewById(R.id.catbubget);
+        spinnerCategorie = (Spinner) findViewById(R.id.catbubget);
         Categorie[] categ = {};
-        lisbudget.setAdapter(new AdapteurCategorie(this, R.layout.item_categories, R.id.txtcat, Categorie.ALL));
-        valbudget = (Button) findViewById(R.id.valbudget);
+        spinnerCategorie.setAdapter(new AdapteurCategorie(this, R.layout.item_categories, R.id.txtcat, Categorie.ALL));
         editTextNote = (EditText) findViewById(R.id.notebudget);
 
         //la datePicker courante
         annee = calendar.get(Calendar.YEAR);
         mois = calendar.get(Calendar.MONTH);
         jour = calendar.get(Calendar.DAY_OF_MONTH);
-//        datePicker.setText(jour + "/" + (mois + 1) + "/" + annee);
         datePicker.setText(todayStr);
     }
 
     private void setAction() {
-        valbudget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonValiderAction();
-            }
-        });
 
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
-                //TODO:
             }
         });
 
-        freqbudget.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerFrequence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String tabfreq[] = getResources().getStringArray(R.array.arrayfrequences);
                 Toast.makeText(getApplicationContext(), tabfreq[position], Toast.LENGTH_LONG).show();//TEST
                 //TODO
-
             }
 
             @Override
@@ -109,11 +101,10 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
 
-        lisbudget.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerCategorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String tabCat[] = getResources().getStringArray(R.array.arrayCategoris);
-                Toast.makeText(getApplicationContext(), tabCat[position], Toast.LENGTH_LONG).show();//TEST
                 //TODO
             }
 
@@ -126,8 +117,16 @@ public class TransactionActivity extends AppCompatActivity {
     }
 
     private void buttonValiderAction() {
-        double montant = (double) Integer.parseInt(montbudget.getText().toString());
-        Categorie categorie = Categorie.getInstance(lisbudget.getSelectedItemPosition());
+        double montant = 0;
+        try {
+            montant = (double) Integer.parseInt(editTextmontant.getText().toString());
+        } catch (Exception e) {
+            montant = (double) Integer.parseInt(editTextmontant.getHint().toString());
+            editTextmontant.setHintTextColor(Color.RED);
+            Toast.makeText(this, R.string.montant_erreur, Toast.LENGTH_LONG).show();
+            return;
+        }
+        Categorie categorie = (Categorie) spinnerCategorie.getSelectedItem();
         String note = editTextNote.getText().toString();
 
         GregorianCalendar date = null;
@@ -141,14 +140,12 @@ public class TransactionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        int frequence = Transaction.JOURNALIER + freqbudget.getSelectedItemPosition();
+        int frequence = Transaction.JOURNALIER + spinnerFrequence.getSelectedItemPosition();
 
         int typeDeTransaction = getIntent().getIntExtra("type", -1); //Entree ou Sortie
         Transaction transaction = new Transaction(typeDeTransaction, montant, categorie, note, date, frequence);
 
         transactionDAO.ajouterTransaction(transaction);
-        Log.i(Utilitaire.MY_LOG, "num on the spinner : " + lisbudget.getSelectedItemPosition());
-        Log.i(Utilitaire.MY_LOG, "id categorie selected : " + categorie.getId());
         finish();
     }
 
@@ -160,6 +157,26 @@ public class TransactionActivity extends AppCompatActivity {
 // Cette n'a pas besoin d'etre edité sauf en cas de D'erreur à signaler
     //class interne pour faire un dialog avec datepicker
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_transaction, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_valider:
+                buttonValiderAction();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public static class DateSetForBudget extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         private int jour = calendar.get(Calendar.DAY_OF_MONTH);
@@ -183,4 +200,5 @@ public class TransactionActivity extends AppCompatActivity {
 //                datePicker.setText(getResources().getString(R.string.today));
         }
     }
+
 }

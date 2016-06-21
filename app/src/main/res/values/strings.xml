@@ -84,12 +84,12 @@
     </string>    <string name="carmotor">
         car/motor
     </string>
-    <string name="montant">montant</string>
-    <string name="categories">Categories</string>
-    <string name="notes">notes</string>
+    <string name="montant">Montant</string>
+    <string name="categorie">Categorie</string>
+    <string name="note">Note</string>
     <string name="date">Date</string>
-    <string name="frequences">frequences</string>
-    <string name="valider">valider</string>
+    <string name="frequence">Périodicité</string>
+    <string name="valider">VALIDER</string>
     <string-array name="arrayfrequences">
         <item>once</item>
         <item>everyday</item>
@@ -104,9 +104,12 @@
         <item>car/motor</item>
         <item>divers</item>
     </string-array>
-<string name="today">
-    today
-</string>
+    <string name="today">today</string>
     <string name="transport">transport</string>
     <string name="resume">Vue d\'ensemble</string>
+    <string name="ajuster_budget">Ajuster budget</string>
+    <string name="ajouter_depense">Ajouter dépense</string>
+    <string name="franc">Francs</string>
+    <string name="zero">0</string>
+    <string name="montant_erreur">Veuillez saisir un montant</string>
 </resources>
