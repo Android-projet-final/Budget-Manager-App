@@ -24,6 +24,7 @@ import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -67,8 +68,15 @@ public class TransactionActivity extends AppCompatActivity {
         spinnerFrequence = (Spinner) findViewById(R.id.freqbudget);
 
         spinnerCategorie = (Spinner) findViewById(R.id.catbubget);
-        Categorie[] categ = {};
-        spinnerCategorie.setAdapter(new AdapteurCategorie(this, R.layout.item_categories, R.id.txtcat, Categorie.ALL));
+
+        ArrayList<Categorie> list;
+        if (getIntent().getIntExtra("type", 0) == Transaction.ENTREE)
+            list = Categorie.ALL_BUD;
+        else
+            list = Categorie.ALL_EXP;
+
+
+        spinnerCategorie.setAdapter(new AdapteurCategorie(this, R.layout.item_categories, R.id.txtcat, list));
         editTextNote = (EditText) findViewById(R.id.notebudget);
 
         //la datePicker courante
@@ -101,18 +109,18 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
 
-        spinnerCategorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tabCat[] = getResources().getStringArray(R.array.arrayCategoris);
-                //TODO
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        spinnerCategorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String tabCat[] = getResources().getStringArray(R.array.arrayCategoris);
+//                //TODO
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
     }
 

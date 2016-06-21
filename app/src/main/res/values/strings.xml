@@ -75,7 +75,7 @@
         travel
     </string>    <string name="shoping">
         shoping
-    </string>    <string name="divers">
+    </string>    <string name="other">
         divers
     </string>    <string name="eduction">
         eduction
@@ -91,25 +91,29 @@
     <string name="frequence">Périodicité</string>
     <string name="valider">VALIDER</string>
     <string-array name="arrayfrequences">
-        <item>once</item>
-        <item>everyday</item>
-        <item>weekly</item>
-        <item>monthly</item>
+        <item>Une fois seulement</item>
+        <item>Chaque Jour</item>
+        <item>Chaque Semaine</item>
+        <item>Chaque mois</item>
     </string-array>
     <string-array name="arrayCategoris">
-        <item>travel</item>
-        <item>shopping</item>
-        <item>eduction</item>
-        <item>food</item>
-        <item>car/motor</item>
-        <item>divers</item>
+        <item>Voyage</item>
+        <item>Achat</item>
+        <item>Education</item>
+        <item>Restoration</item>
+        <item>Auto/Motor</item>
+        <item>Autre</item>
     </string-array>
-    <string name="today">today</string>
-    <string name="transport">transport</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="transport">Transport</string>
     <string name="resume">Vue d\'ensemble</string>
     <string name="ajuster_budget">Ajuster budget</string>
     <string name="ajouter_depense">Ajouter dépense</string>
     <string name="franc">Francs</string>
     <string name="zero">0</string>
     <string name="montant_erreur">Veuillez saisir un montant</string>
+    <string name="salary">Salaire</string>
+    <string name="gift">Cadeau</string>
+    <string name="selling">Vente</string>
+    <string name="award">Recompense</string>
 </resources>
