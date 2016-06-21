@@ -17,13 +17,13 @@
         <menu>
             <item
                 android:id="@+id/addbudget"
-
+                android:icon="@drawable/budget"
                 android:orderInCategory="100"
                 android:title="@string/budget"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/adddepenses"
-
+                android:icon="@drawable/selling"
                 android:orderInCategory="200"
                 android:title="@string/despense"
                 app:showAsAction="never" />
