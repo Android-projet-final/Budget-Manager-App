@@ -25,7 +25,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
-import com.ly.badiane.budgetmanager_finalandroidproject.activites.SettingsActivity;
 import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.ListAdapteurFinance;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Mois> moisEcoulesList;
 
     public static void listItemClicked(Transaction transaction) {
-        Dialog dialog = new TransactionInfoDialog((Activity) mainContext);
+        Dialog dialog = new TransactionInfoDialog((Activity) mainContext, transaction, transactionDAO);
         dialog.show();
     }
 
@@ -127,10 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_settings:
-                activitySwitcher = new Intent(this, SettingsActivity.class);
-                startActivity(activitySwitcher);
-                return true;
             case R.id.addbudget:
                 activitySwitcher = new Intent(this, TransactionActivity.class);
                 activitySwitcher.putExtra("type", Transaction.ENTREE);
@@ -258,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
             if (position == moisEcoulesList.size() - 1)
                 return getResources().getString(R.string.this_month);
             if (position == moisEcoulesList.size() - 2)
-                return getResources().getString(R.string.last_month);//TODO INTERNATIONALISATION
+                return getResources().getString(R.string.last_month);
             return moisEcoulesList.get(position).toString();
         }
     }

@@ -157,7 +157,7 @@ public class TransactionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        int frequence = Transaction.JOURNALIER + spinnerFrequence.getSelectedItemPosition();
+        int frequence = Transaction.UNE_FOIS + spinnerFrequence.getSelectedItemPosition();
 
         int typeDeTransaction = getIntent().getIntExtra("type", -1); //Entree ou Sortie
         Transaction transaction = new Transaction(typeDeTransaction, montant, categorie, note, date, frequence);

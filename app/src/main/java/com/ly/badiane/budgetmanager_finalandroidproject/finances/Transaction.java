@@ -1,5 +1,6 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.finances;
 
+import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
 
 import java.util.GregorianCalendar;
@@ -139,5 +140,17 @@ public class Transaction {
 
     public void setFrequences(int frequence) {
         this.frequence = frequence;
+    }
+
+    public int getFrequencesResID() {
+        if (frequence == Transaction.UNE_FOIS)
+            return R.string.once;
+        if (frequence == Transaction.JOURNALIER)
+            return R.string.every_day;
+        if (frequence == Transaction.HEBDOMADAIRE)
+            return R.string.every_week;
+        if (frequence == Transaction.MENSUEL)
+            return R.string.every_month;
+        return 0;
     }
 }

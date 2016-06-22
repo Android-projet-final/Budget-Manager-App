@@ -8,8 +8,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
+import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.AlarmDAO;
+import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 
 /**
  * Created by layely on 6/22/16.
@@ -18,13 +24,23 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
 
     public Activity c;
     public Dialog d;
+    private Transaction transaction;
+    private TransactionDAO transactionDAO;
+    private AlarmDAO alarmDAO;
 
-    Button buttonModify, buttonDelete;
+    private Button buttonModify, buttonDelete;
 
-    public TransactionInfoDialog(Activity a) {
+    private TextView textViewType, textViewDate, textViewAlarm, textViewNote, textViewFrequence;
+
+    private ImageView imageViewCategorie, imageViewType;
+
+    public TransactionInfoDialog(Activity a, Transaction t, TransactionDAO transactionDAO) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
+        this.transactionDAO = transactionDAO;
+        this.alarmDAO = new AlarmDAO(c);
+        transaction = t;
     }
 
     @Override
@@ -41,18 +57,50 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
         int height = WindowManager.LayoutParams.WRAP_CONTENT;
         getWindow().setLayout((int) (width * 0.75), height);
 
-        buttonModify = (Button) findViewById(R.id.buttonModifyDialogTransaction);
-        buttonDelete = (Button) findViewById(R.id.buttonDeleteDialogTransaction);
+        init();
 
         buttonDelete.setOnClickListener(this);
         buttonModify.setOnClickListener(this);
+    }
+
+    private void init() {
+        buttonModify = (Button) findViewById(R.id.buttonModifyDialogTransaction);
+        buttonDelete = (Button) findViewById(R.id.buttonDeleteDialogTransaction);
+
+        textViewType = (TextView) findViewById(R.id.textViewTypeDialogTransaction);
+        textViewDate = (TextView) findViewById(R.id.textViewDateDialogTransaction);
+        textViewAlarm = (TextView) findViewById(R.id.textviewAlarmDialogTransaction);
+        textViewNote = (TextView) findViewById(R.id.textviewNoteTransaction);
+        textViewFrequence = (TextView) findViewById(R.id.textviewFrequenceDialogTransaction);
+
+        imageViewCategorie = (ImageView) findViewById(R.id.imageViewDialogCategTransaction);
+        imageViewType = (ImageView) findViewById(R.id.imageViewTypeDialogTransaction);
+
+        int typeResId = 0;
+        if (transaction.isBudget())
+            typeResId = R.string.budget;
+        else
+            typeResId = R.string.despense;
+        textViewType.setText(typeResId);
+        textViewDate.setText(Utilitaire.calandarToString(transaction.getDate()));
+        textViewNote.setText(transaction.getNote());
+
+        String alarm = alarmDAO.getDateTime(transaction.getId());
+        textViewAlarm.setText(alarm);
+
+        textViewFrequence.setText(transaction.getFrequencesResID());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonModifyDialogTransaction:
+                //TODO
+                break;
             case R.id.buttonDeleteDialogTransaction:
+                alarmDAO.supprimer(transaction.getId());
+                transactionDAO.supprimerTransaction(transaction.getId());
+                c.recreate();
                 break;
         }
         dismiss();

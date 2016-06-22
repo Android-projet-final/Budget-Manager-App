@@ -120,4 +120,8 @@
     <string name="future_months">Mois Futures</string>
     <string name="this_month">Ce mois-ci</string>
     <string name="last_month">Mois dernier</string>
+    <string name="every_day">Chaque jour</string>
+    <string name="once">Une fois seulement</string>
+    <string name="every_week">Chaque semaine</string>
+    <string name="every_month">Chaque mois</string>
 </resources>
