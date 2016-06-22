@@ -72,15 +72,15 @@
     </string>
 
         <string name="voyage">
-        travel
+        Voyage
     </string>    <string name="shoping">
-        shoping
+        Achat
     </string>    <string name="other">
-        divers
+        Autre
     </string>    <string name="eduction">
-        eduction
+        Education
     </string>    <string name="food">
-        food
+        Restoration
     </string>    <string name="carmotor">
         car/motor
     </string>

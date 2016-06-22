@@ -189,6 +189,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             if (id == android.R.id.home) {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 return true;
+
             }
             return super.onOptionsItemSelected(item);
         }
