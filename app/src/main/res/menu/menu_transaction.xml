@@ -6,6 +6,7 @@
 
     <item
         android:id="@+id/menu_valider"
+        android:icon="@drawable/ic_done_black_24dp"
         android:orderInCategory="100"
         android:title="@string/valider"
         app:showAsAction="always" />
