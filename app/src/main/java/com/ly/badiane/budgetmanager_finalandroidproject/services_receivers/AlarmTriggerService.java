@@ -1,5 +1,6 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.services_receivers;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -75,6 +76,8 @@ public class AlarmTriggerService extends Service {
                 .setContentIntent(pendingIntent);
         //Vibration
         notificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        //Default sound set
+        notificationBuilder.setDefaults(Notification.DEFAULT_SOUND);
 
         //LED
         notificationBuilder.setLights(Color.RED, 3000, 3000);
