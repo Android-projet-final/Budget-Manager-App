@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/h3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_down_green_nobg" />
+
+        <TextView
+            android:id="@+id/textViewTypeDialogTransaction"
+            style="@style/AppTheme.textviewTransactionDialogDialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/despense"
+            android:textSize="@dimen/h1" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/BLACK"></View>
+
+    <ImageView
+        android:id="@+id/imageViewDialogTransaction"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/h2"
+        android:layout_marginTop="@dimen/h2"
+        android:src="@drawable/education_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/h1"
+            android:layout_height="@dimen/h1"
+            android:src="@mipmap/date_black_no_bg" />
+
+        <TextView
+            android:id="@+id/textViewDateDialogTransaction"
+            style="@style/AppTheme.textviewTransactionDialogDialog"
+            android:text="@string/date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/h1"
+            android:layout_height="@dimen/h1"
+            android:src="@mipmap/refresh_black_nobg" />
+
+        <TextView
+            android:id="@+id/textviewFrequenceDialogTransaction"
+            style="@style/AppTheme.textviewTransactionDialogDialog"
+            android:text="@string/frequence" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/h1"
+            android:layout_height="@dimen/h1"
+            android:src="@mipmap/note_black_nobg" />
+
+        <TextView
+            android:id="@+id/textviewNoteTransaction"
+            style="@style/AppTheme.textviewTransactionDialogDialog"
+            android:text="@string/note" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/h1"
+            android:layout_height="@dimen/h1"
+            android:src="@mipmap/alarm_black_nogb" />
+
+        <TextView
+            android:id="@+id/textviewAlarmDialogTransaction"
+            style="@style/AppTheme.textviewTransactionDialogDialog"
+            android:text="@string/action_alarm" />
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/h5"
+        android:gravity="center"
+        android:stretchColumns="0,1">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/buttonModifyDialogTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="modifier" />
+
+            <Button
+                android:id="@+id/buttonDeleteDialogTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="supprimer" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

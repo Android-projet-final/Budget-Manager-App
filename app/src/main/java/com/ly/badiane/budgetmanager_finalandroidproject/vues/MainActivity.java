@@ -1,6 +1,8 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.vues;
 
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -18,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private UtilitaireDAO utilitaireDAO;
     //    private int nbSlides = 0; //Contient le nombre de pages ou de slides ou encore de tabulation dans le ViewPager
     private ArrayList<Mois> moisEcoulesList;
+
+    public static void listItemClicked(Transaction transaction) {
+        Dialog dialog = new TransactionInfoDialog((Activity) mainContext);
+        dialog.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,7 +202,13 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textViewDifference = (TextView) rootView.findViewById(R.id.text_difference);
 
-            ListView listView = (ListView) rootView.findViewById(R.id.listview);
+            final ListView listView = (ListView) rootView.findViewById(R.id.listview);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    listItemClicked((Transaction) listView.getItemAtPosition(position));
+                }
+            });
             listView.setAdapter(new ListAdapteurFinance(mainContext, listDesTransactionsDuSlide));
 
             final Double totalDepense = Transaction.totalExpensese(listDesTransactionsDuSlide);
@@ -248,5 +262,4 @@ public class MainActivity extends AppCompatActivity {
             return moisEcoulesList.get(position).toString();
         }
     }
-
 }
