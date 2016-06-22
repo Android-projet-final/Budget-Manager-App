@@ -33,7 +33,7 @@ public class Categorie {
     }
 
     static {
-        ALL = ALL_EXP;
+        ALL = (ArrayList<Categorie>) ALL_EXP.clone();
         ALL.addAll(ALL_BUD);
     }
 

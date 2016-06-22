@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ly.badiane.budgetmanager_finalandroidproject">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/imageapp"
@@ -23,6 +27,24 @@
             android:label="@string/title_activity_settings" />
         <activity android:name=".vues.TransactionActivity" />
 
+        <service
+            android:name=".services_receivers.AlarmTriggerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.ly.badiane.budgetmanager_finalandroidproject.services.AlarmTrigger" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".services_receivers.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -116,4 +116,5 @@
     <string name="gift">Cadeau</string>
     <string name="selling">Vente</string>
     <string name="award">Recompense</string>
+    <string name="reminder_text">Rappel d\'une transaction d\'un montant de %1$s ajoutée le %2$s</string>
 </resources>

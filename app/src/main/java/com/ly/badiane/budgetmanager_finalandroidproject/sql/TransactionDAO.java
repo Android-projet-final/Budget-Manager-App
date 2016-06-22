@@ -76,6 +76,24 @@ public class TransactionDAO {
         return list;
     }
 
+    public Transaction getTransaction(int id) {
+        Cursor result = db.rawQuery("SELECT " +
+                SqlHelper.COLUMN_TRANSACTION_ID + ", " +
+                SqlHelper.COLUMN_TRANSACTION_TYPE + ", " +
+                SqlHelper.COLUMN_TRANSACTION_MONTANT + ", " +
+                SqlHelper.COLUMN_TRANSACTION_CATEGORIE + ", " +
+                SqlHelper.COLUMN_TRANSACTION_NOTE + ", " +
+                SqlHelper.COLUMN_TRANSACTION_DATE + ", " +
+                SqlHelper.COLUMN_TRANSACTION_FREQUENCE +
+                " FROM " + SqlHelper.TABLE_TRANSACTION +
+                " WHERE " + SqlHelper.COLUMN_TRANSACTION_ID + "=" + id, null);
+
+        List<Transaction> list = commeList(result);
+        if (list.size() == 1)
+            return list.get(0);
+        return null;
+    }
+
     public boolean ajouterTransaction(Transaction transaction) {
 
         ContentValues values = getContentValuesWithoutID(transaction);
@@ -142,6 +160,7 @@ public class TransactionDAO {
         }
         return null;
     }
+
     /*
      * Retourne la liste des transactions effectuées entre un mois A et B (inclus les mois effectués pendant A et B)
     * */

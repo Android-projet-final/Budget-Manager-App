@@ -26,6 +26,7 @@ import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.ListAdapteurFi
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
+import com.ly.badiane.budgetmanager_finalandroidproject.services_receivers.AlarmTriggerService;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.MoisEcoulesDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
 
-
+        startService(new Intent(this, AlarmTriggerService.class));
     }
 
     @Override
