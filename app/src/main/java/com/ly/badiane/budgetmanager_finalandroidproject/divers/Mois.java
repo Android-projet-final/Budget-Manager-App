@@ -40,7 +40,11 @@ public class Mois implements Comparable<Mois> {
 
     @Override
     public String toString() {
-        return numero + "/" + annee;
+        StringBuilder str = new StringBuilder();
+        if (numero < 10)
+            str.append("0");
+        str.append(numero + "/" + annee);
+        return str.toString();
     }
 
     public int getNumero() {

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -79,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
+
+        PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pagerTitleStrip);
+        pagerTabStrip.setTextColor(Color.WHITE);
+        pagerTabStrip.setTabIndicatorColor(Color.parseColor("#FF54D4"));
 
         startService(new Intent(this, AlarmTriggerService.class));
     }
@@ -235,11 +240,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == moisEcoulesList.size())
-                return "Mois Futures"; //TODO internasionalisation
+                return getResources().getString(R.string.future_months);
             if (position == moisEcoulesList.size() - 1)
-                return "Ce mois-ci"; //TODO internasionalisation
+                return getResources().getString(R.string.this_month);
             if (position == moisEcoulesList.size() - 2)
-                return "Mois dernier";//TODO INTERNATIONALISATION
+                return getResources().getString(R.string.last_month);//TODO INTERNATIONALISATION
             return moisEcoulesList.get(position).toString();
         }
     }

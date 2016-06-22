@@ -9,4 +9,5 @@
     <dimen name="h4">15dp</dimen>
     <dimen name="h5">10dp</dimen>
     <dimen name="h6">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
