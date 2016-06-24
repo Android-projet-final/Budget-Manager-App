@@ -39,7 +39,10 @@ public class MoisEcoulesDAO {
         int moisCourant = calendar.get(GregorianCalendar.MONTH) + 1; //Janvier = 0 dans la classe GregorianCalandar d'ou l'incrementaion de 1
         int anneeCourant = calendar.get(GregorianCalendar.YEAR);
 
-//        ajouterMois(moisCourant, anneeCourant);
+//        ajouterMois(moisCourant, anneeCourant)
+        for (int j = 2000; j < anneeCourant; j++)
+            for (int i = 1; i <= 12; i++)
+                ajouterMois(i, j);
         for (int i = 1; i <= moisCourant; i++) {
             ajouterMois(i, anneeCourant);
         }

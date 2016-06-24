@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        toolbar.setBackgroundColor(Color.BLACK);
         getSupportActionBar().setIcon(R.drawable.financial);
 
         mainContext = this;
