@@ -2,7 +2,10 @@ package com.ly.badiane.budgetmanager_finalandroidproject.finances;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Categorie;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
+import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 
+import java.text.ParseException;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -55,27 +58,59 @@ public class Transaction {
         this.id = id;
     }
 
-    public static Double difference(List<Transaction> list) {
-        return totalBudget(list) - totalExpensese(list);
-    }
 
-    public static Double totalBudget(List<Transaction> list) {
+    public static Double totalBudget(List<Transaction> list, Mois mois) {
         double sum = 0;
         for (Transaction t : list) {
             if (t.isBudget())
-                sum += t.getMontant();
+                sum += t.getTotalDuMois(mois);
         }
         return sum;
     }
 
-    public static Double totalExpensese(List<Transaction> list) {
+    public static Double totalExpensese(List<Transaction> list, Mois mois) {
         double sum = 0;
         for (Transaction t : list) {
-            if (t.isExpensise())
-                sum += t.getMontant();
+            if (t.isExpensise()) {
+                sum += t.getTotalDuMois(mois);
+            }
         }
         return sum;
     }
+
+    private Double getTotalDuMois(Mois mois) {
+        if (this.getFrequences() == Transaction.UNE_FOIS || this.getFrequences() == Transaction.MENSUEL)
+            return this.getMontant();
+
+        if(mois == null)
+            return this.getMontant();
+
+        GregorianCalendar gc = new GregorianCalendar();
+        try {
+           gc.setTimeInMillis( Utilitaire.stringToCalandar(mois.toString()).getTimeInMillis() );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        gc.setTimeInMillis(this.getDate().getTimeInMillis());
+
+        gc.set(GregorianCalendar.MONTH, this.getDate().get(GregorianCalendar.MONTH));
+
+//        if(gc == null)
+//            return null;
+
+        if (this.getFrequences() == Transaction.JOURNALIER) {
+            int nbJour = gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+            return this.getMontant() * nbJour;
+        }
+
+        if (this.getFrequences() == Transaction.HEBDOMADAIRE) {
+            int nbHeb = gc.getActualMaximum(GregorianCalendar.WEEK_OF_MONTH);
+            return this.getMontant() * nbHeb;
+        }
+
+        return null;
+    }
+
 
     public boolean isBudget() {
         return (type == ENTREE ? true : false);

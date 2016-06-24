@@ -33,13 +33,11 @@ public class AlarmTriggerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Service started", Toast.LENGTH_LONG).show();
         Thread t = new Thread(new Routine(startId));
         t.start();
         return START_STICKY;

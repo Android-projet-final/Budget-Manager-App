@@ -1,6 +1,5 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.vues;
 
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -36,8 +35,8 @@ import com.ly.badiane.budgetmanager_finalandroidproject.sql.TransactionDAO;
 import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
     public static Context mainContext;
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-
     }
 
     @Override
@@ -136,12 +134,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //no inspection SimplifiableIfStatement
         switch (id) {
             case R.id.menu_home:
                 mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
@@ -192,17 +187,21 @@ public class MainActivity extends AppCompatActivity {
 
             int numSlide = getArguments().getInt(ARG_SECTION_NUMBER);
             ArrayList<Mois> listeDesMois = moisEcoulesDAO.liste();
-            Mois moisDuFragment;
+            Mois moisDuFragment = null;
             List<Transaction> listDesTransactionsDuSlide;
+            Mois ceMoisCi = null;
 
             if (numSlide < listeDesMois.size()) {
                 moisDuFragment = listeDesMois.get(numSlide);
                 listDesTransactionsDuSlide = transactionDAO.listDuMois(moisDuFragment);
+                List<Transaction> listDesTransactionsFreq = transactionDAO.listAvantpFreqMois(moisDuFragment);
+                listDesTransactionsDuSlide.addAll(listDesTransactionsFreq);
             } else {
                 // Page Futures transaction
-                Mois ceMoisCi = listeDesMois.get(listeDesMois.size() - 1);
+                ceMoisCi = listeDesMois.get(listeDesMois.size() - 1);
                 listDesTransactionsDuSlide = transactionDAO.listApresMois(ceMoisCi);
             }
+
 
             TextView textSectionLabel = (TextView) rootView.findViewById(R.id.section_label);
 //            textSectionLabel.setText(getString(R.string.section_format, numSlide));
@@ -222,8 +221,8 @@ public class MainActivity extends AppCompatActivity {
             });
             listView.setAdapter(new ListTransactionAdapteur(mainContext, listDesTransactionsDuSlide));
 
-            final Double totalDepense = Transaction.totalExpensese(listDesTransactionsDuSlide);
-            final Double totalBudet = Transaction.totalBudget(listDesTransactionsDuSlide);
+            final Double totalDepense = Transaction.totalExpensese(listDesTransactionsDuSlide, moisDuFragment);
+            final Double totalBudet = Transaction.totalBudget(listDesTransactionsDuSlide, moisDuFragment);
             final Double difference = totalBudet - totalDepense;
 
             textTotalDepense.setText(totalDepense.toString());
@@ -258,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return moisEcoulesList.size() + 1;
         }
 

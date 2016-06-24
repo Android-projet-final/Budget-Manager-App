@@ -197,4 +197,12 @@ public class TransactionDAO {
     }
 
 
+    public List<Transaction> listAvantpFreqMois(Mois moisDuFragment) {
+        List<Transaction> list = new ArrayList<>();
+        for (Transaction transaction :this.listAvantMois(moisDuFragment)) {
+            if(transaction.getFrequences() != Transaction.UNE_FOIS)
+                list.add(transaction);
+        }
+        return list;
+    }
 }
