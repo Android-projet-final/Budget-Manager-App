@@ -17,10 +17,10 @@ import java.util.List;
 /**
  * Created by badiane on 12/06/2016.
  */
-public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
+public class ListTransactionAdapteur extends ArrayAdapter<Transaction> {
 
-    public ListAdapteurFinance(Context context, List<Transaction> transactions) {
-        super(context, R.layout.view_finances, transactions);
+    public ListTransactionAdapteur(Context context, List<Transaction> transactions) {
+        super(context, R.layout.row_list_transaction, transactions);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ListAdapteurFinance extends ArrayAdapter<Transaction> {
         View row = recup;
         if (row == null) {
             LayoutInflater li = LayoutInflater.from(parent.getContext());
-            row = li.inflate(R.layout.view_finances, parent, false);
+            row = li.inflate(R.layout.row_list_transaction, parent, false);
         }
 
         ImageView iconCategorie = (ImageView) row.findViewById(R.id.imageCategories);

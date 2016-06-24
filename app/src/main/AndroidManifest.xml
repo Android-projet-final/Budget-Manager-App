@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/imageapp"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,9 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activites.SettingsActivity"
-            android:label="@string/title_activity_settings" />
         <activity android:name=".vues.TransactionActivity" />
 
         <service
@@ -46,9 +43,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".vues.ListItemPopUp"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>

@@ -3,31 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ly.badiane.budgetmanager_finalandroidproject.vues.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings_applications_black_24dp"
+        android:id="@+id/menu_rapport"
         android:orderInCategory="300"
         android:title="@string/action_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
-        android:id="@+id/add"
-        android:icon="@mipmap/add"
+        android:id="@+id/menu_home"
+        android:icon="@mipmap/this_month_white"
         android:orderInCategory="100"
         android:title="@string/add"
         app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/addbudget"
-                android:icon="@drawable/budget"
-                android:orderInCategory="100"
-                android:title="@string/budget"
-                app:showAsAction="never" />
-            <item
-                android:id="@+id/adddepenses"
-                android:icon="@drawable/selling"
-                android:orderInCategory="200"
-                android:title="@string/despense"
-                app:showAsAction="never" />
-        </menu>
     </item>
 
 </menu>

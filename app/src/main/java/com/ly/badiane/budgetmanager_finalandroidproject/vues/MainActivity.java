@@ -26,7 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.R;
-import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.ListAdapteurFinance;
+import com.ly.badiane.budgetmanager_finalandroidproject.adapteurs.ListTransactionAdapteur;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Utilitaire;
 import com.ly.badiane.budgetmanager_finalandroidproject.finances.Transaction;
@@ -38,17 +38,18 @@ import com.ly.badiane.budgetmanager_finalandroidproject.sql.UtilitaireDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
     public static Context mainContext;
     protected static TransactionDAO transactionDAO;
     private static MoisEcoulesDAO moisEcoulesDAO;
+    int i;
     private Intent activitySwitcher; //pour changer d'activiter
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private UtilitaireDAO utilitaireDAO;
     //    private int nbSlides = 0; //Contient le nombre de pages ou de slides ou encore de tabulation dans le ViewPager
     private ArrayList<Mois> moisEcoulesList;
-
     private FloatingActionButton fab;
 
     public static void listItemClicked(Transaction transaction) {
@@ -59,13 +60,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.financial);
-
         mainContext = this;
 
+        if (i == 0) {
+            setContentView(R.layout.activity_start);
+            i++;
+        }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
 
@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         initMoisEcoulesList();
 
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.drawable.financial);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         moisEcoulesList = moisEcoulesDAO.liste();
         Mois moisCourant = Mois.getCurrentMonth();
         Mois dernierMoisEnregistre = moisEcoulesList.get(moisEcoulesList.size() - 1);
-        if (dernierMoisEnregistre.isBefore(moisCourant)) {
+        if (dernierMoisEnregistre.isBefore(moisCourant) || dernierMoisEnregistre.isAfter(moisCourant)) {
             Log.i(Utilitaire.MY_LOG, "dans if de initMois");
             moisEcoulesDAO.reInit();
             moisEcoulesList = moisEcoulesDAO.liste();
@@ -139,17 +143,10 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.addbudget:
-                activitySwitcher = new Intent(this, TransactionActivity.class);
-                activitySwitcher.putExtra("type", Transaction.ENTREE);
-                activitySwitcher.putExtra("titleResID", R.string.ajuster_budget);
-                startActivity(activitySwitcher);
+            case R.id.menu_home:
+                mViewPager.setCurrentItem(moisEcoulesList.size() - 1);
                 return true;
-            case R.id.adddepenses:
-                activitySwitcher = new Intent(this, TransactionActivity.class);
-                activitySwitcher.putExtra("type", Transaction.SORTIE);
-                activitySwitcher.putExtra("titleResID", R.string.ajouter_depense);
-                startActivity(activitySwitcher);
+            case R.id.menu_rapport:
                 return true;
 
         }
@@ -223,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     listItemClicked((Transaction) listView.getItemAtPosition(position));
                 }
             });
-            listView.setAdapter(new ListAdapteurFinance(mainContext, listDesTransactionsDuSlide));
+            listView.setAdapter(new ListTransactionAdapteur(mainContext, listDesTransactionsDuSlide));
 
             final Double totalDepense = Transaction.totalExpensese(listDesTransactionsDuSlide);
             final Double totalBudet = Transaction.totalBudget(listDesTransactionsDuSlide);
@@ -276,6 +273,4 @@ public class MainActivity extends AppCompatActivity {
             return moisEcoulesList.get(position).toString();
         }
     }
-
-
 }
