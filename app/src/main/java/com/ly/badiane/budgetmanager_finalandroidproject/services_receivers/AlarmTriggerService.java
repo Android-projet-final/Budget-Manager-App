@@ -72,7 +72,7 @@ public class AlarmTriggerService extends Service {
                 .setContentTitle(getResources().getString(R.string.app_name))
                 .setContentText(reminderText)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.imageapp)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent);
         //Vibration
         notificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});

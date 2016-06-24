@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.financial);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
