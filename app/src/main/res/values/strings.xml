@@ -124,4 +124,5 @@
     <string name="once">Une fois seulement</string>
     <string name="every_week">Chaque semaine</string>
     <string name="every_month">Chaque mois</string>
+    <string name="question_add">Que voudriez vous ajouter ?</string>
 </resources>

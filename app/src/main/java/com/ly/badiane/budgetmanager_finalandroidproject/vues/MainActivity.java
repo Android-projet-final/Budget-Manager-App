@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private UtilitaireDAO utilitaireDAO;
     //    private int nbSlides = 0; //Contient le nombre de pages ou de slides ou encore de tabulation dans le ViewPager
     private ArrayList<Mois> moisEcoulesList;
+
+    private FloatingActionButton fab;
 
     public static void listItemClicked(Transaction transaction) {
         Dialog dialog = new TransactionInfoDialog((Activity) mainContext, transaction, transactionDAO);
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         pagerTabStrip.setTabIndicatorColor(Color.parseColor("#FF54D4"));
 
         startService(new Intent(this, AlarmTriggerService.class));
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
     }
 
     @Override
@@ -142,6 +148,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //floatingActionBar action
+    public void showDialogAddTransaction(View view) {
+        Dialog dialog = new FabAddDialog(this);
+        dialog.show();
     }
 
     /**

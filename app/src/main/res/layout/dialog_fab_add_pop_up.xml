@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#3E80B4"
+    android:background="@color/colorAccent"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Do you realy want to exit ?"
+        android:text="@string/question_add"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
@@ -25,24 +25,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_yes"
+            android:id="@+id/dialog_bnt_budget"
             android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:text="Yes"
-            android:textColor="#5DBCD2"
+            android:text="@string/budget"
+            android:textColor="@color/BLACK"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_no"
+            android:id="@+id/dialog_bnt_depense"
             android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:text="No"
-            android:textColor="#5DBCD2"
+            android:text="@string/despense"
+            android:textColor="@color/BLACK"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

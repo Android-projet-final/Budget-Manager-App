@@ -77,10 +77,16 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
         imageViewType = (ImageView) findViewById(R.id.imageViewTypeDialogTransaction);
 
         int typeResId = 0;
-        if (transaction.isBudget())
+        int typeIconId = 0;
+        if (transaction.isBudget()) {
             typeResId = R.string.budget;
-        else
+            typeIconId = R.mipmap.arrow_down_green_nobg;
+        } else {
             typeResId = R.string.despense;
+            typeIconId = R.mipmap.arrow_red_up_nobg;
+        }
+        imageViewType.setImageResource(typeIconId);
+        imageViewCategorie.setImageResource(transaction.getCategorie().getDrawableResId());
         textViewType.setText(typeResId);
         textViewDate.setText(Utilitaire.calandarToString(transaction.getDate()));
         textViewNote.setText(transaction.getNote());
