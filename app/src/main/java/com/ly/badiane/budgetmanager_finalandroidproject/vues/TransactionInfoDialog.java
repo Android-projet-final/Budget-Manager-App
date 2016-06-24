@@ -28,7 +28,7 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
     private TransactionDAO transactionDAO;
     private AlarmDAO alarmDAO;
 
-    private Button buttonModify, buttonDelete;
+    private Button buttonDelete;
 
     private TextView textViewType, textViewDate, textViewAlarm, textViewNote, textViewFrequence;
 
@@ -60,11 +60,9 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
         init();
 
         buttonDelete.setOnClickListener(this);
-        buttonModify.setOnClickListener(this);
     }
 
     private void init() {
-        buttonModify = (Button) findViewById(R.id.buttonModifyDialogTransaction);
         buttonDelete = (Button) findViewById(R.id.buttonDeleteDialogTransaction);
 
         textViewType = (TextView) findViewById(R.id.textViewTypeDialogTransaction);
@@ -100,9 +98,6 @@ public class TransactionInfoDialog extends Dialog implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonModifyDialogTransaction:
-                //TODO
-                break;
             case R.id.buttonDeleteDialogTransaction:
                 alarmDAO.supprimer(transaction.getId());
                 transactionDAO.supprimerTransaction(transaction.getId());

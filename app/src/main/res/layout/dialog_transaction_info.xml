@@ -109,16 +109,10 @@
         <TableRow>
 
             <Button
-                android:id="@+id/buttonModifyDialogTransaction"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="modifier" />
-
-            <Button
                 android:id="@+id/buttonDeleteDialogTransaction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="supprimer" />
+                android:text="@string/supprimer" />
         </TableRow>
     </TableLayout>
 
