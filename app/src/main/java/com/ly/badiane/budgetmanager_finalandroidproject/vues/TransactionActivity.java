@@ -101,6 +101,9 @@ public class TransactionActivity extends AppCompatActivity {
         alarmTime = new GregorianCalendar();
         editTextAlarm.setText(Utilitaire.calendarToCompleteString(alarmTime));
         editTextAlarm.setVisibility(View.GONE);
+        editTextAlarm.setInputType(InputType.TYPE_NULL);
+        editTextAlarm.setFocusable(false);
+
 
     }
 
