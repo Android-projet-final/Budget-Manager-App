@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
+
     }
 
     @Override
@@ -113,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initMoisEcoulesList() {
         moisEcoulesList = moisEcoulesDAO.liste();
+        Mois moisCourant = Mois.getCurrentMonth();
+        Mois dernierMoisEnregistre = moisEcoulesList.get(moisEcoulesList.size() - 1);
+        if (dernierMoisEnregistre.isBefore(moisCourant)) {
+            Log.i(Utilitaire.MY_LOG, "dans if de initMois");
+            moisEcoulesDAO.reInit();
+            moisEcoulesList = moisEcoulesDAO.liste();
+        }
     }
 
     @Override
@@ -268,4 +276,6 @@ public class MainActivity extends AppCompatActivity {
             return moisEcoulesList.get(position).toString();
         }
     }
+
+
 }

@@ -2,10 +2,12 @@ package com.ly.badiane.budgetmanager_finalandroidproject.sql;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ly.badiane.budgetmanager_finalandroidproject.divers.Mois;
+import com.ly.badiane.budgetmanager_finalandroidproject.services_receivers.AlarmTriggerService;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -14,10 +16,12 @@ import java.util.GregorianCalendar;
  * Created by layely on 6/18/16.
  */
 public class MoisEcoulesDAO {
+    Context context = null;
     private SQLiteDatabase db;
 
     public MoisEcoulesDAO(Context context) {
         db = new SqlHelper(context).getWritableDatabase();
+        this.context = context;
     }
 
 
@@ -35,6 +39,9 @@ public class MoisEcoulesDAO {
     }
 
     public boolean insertionLorsDuPremierLancement() {
+        Intent serviceIntent = new Intent(context, AlarmTriggerService.class);
+        context.stopService(serviceIntent);
+
         GregorianCalendar calendar = new GregorianCalendar();
         int moisCourant = calendar.get(GregorianCalendar.MONTH) + 1; //Janvier = 0 dans la classe GregorianCalandar d'ou l'incrementaion de 1
         int anneeCourant = calendar.get(GregorianCalendar.YEAR);
@@ -46,6 +53,8 @@ public class MoisEcoulesDAO {
         for (int i = 1; i <= moisCourant; i++) {
             ajouterMois(i, anneeCourant);
         }
+
+        context.startService(serviceIntent);
         return true;
     }
 
@@ -64,5 +73,14 @@ public class MoisEcoulesDAO {
         }
         cursor.close();
         return liste;
+    }
+
+    public void reInit() {
+        clear();
+        insertionLorsDuPremierLancement();
+    }
+
+    private void clear() {
+        db.delete(SqlHelper.TABLE_MOIS_ECOULES, null, null);
     }
 }

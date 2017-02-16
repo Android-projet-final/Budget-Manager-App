@@ -1,6 +1,7 @@
 package com.ly.badiane.budgetmanager_finalandroidproject.divers;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by layely on 6/18/16.
@@ -36,6 +37,11 @@ public class Mois implements Comparable<Mois> {
         int m = calendar.get(Calendar.MONTH) + 1;
         int a = calendar.get(Calendar.YEAR);
         return new Mois(m, a);
+    }
+
+    public static Mois getCurrentMonth() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        return new Mois(calendar.get(GregorianCalendar.MONTH) + 1, calendar.get(Calendar.YEAR));
     }
 
     @Override
