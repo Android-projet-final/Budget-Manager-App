@@ -21,4 +21,4 @@ Une telle application est utile en ce sens qu'elle permet à l’utilisateur de 
 
 * ### Note
 
-Cette application a été réalisé dans le cadre du cours d'Android à l'université de Thiès et nous ne seront tenu responsable en aucun cas pour pertes ou dommages survenus lors de son utilisation. 
+Cette application a été réalisé dans le cadre du cours d'Android à l'université de Thiès et nous ne seront tenus responsable en aucun cas pour pertes ou dommages survenus lors de son utilisation. 
